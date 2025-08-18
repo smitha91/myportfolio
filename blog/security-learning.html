@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cybersecurity Learning Journey - Ashley Smith</title>
+    <link rel="stylesheet" href="../landingpage/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(10, 22, 40, 0.9);
+            border-radius: 20px;
+            border: 1px solid rgba(99, 179, 237, 0.2);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(99, 179, 237, 0.3);
+        }
+        .blog-title {
+            font-size: 2.5rem;
+            color: #F7FAFC;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+        .blog-meta {
+            color: #90CDF4;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .blog-tags {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .blog-tag {
+            background: rgba(99, 179, 237, 0.15);
+            color: #63B3ED;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(99, 179, 237, 0.3);
+        }
+        .blog-content {
+            line-height: 1.8;
+            color: #F7FAFC;
+        }
+        .blog-content h2 {
+            color: #90CDF4;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-left: 4px solid #63B3ED;
+            padding-left: 1rem;
+        }
+        .blog-content h3 {
+            color: #CBD5E0;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+        .blog-content ul, .blog-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+        .code-block {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 179, 237, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            color: #E2E8F0;
+        }
+        .highlight {
+            background: rgba(99, 179, 237, 0.2);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #90CDF4;
+            font-weight: 500;
+        }
+        .back-to-portfolio {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(99, 179, 237, 0.2);
+        }
+        .back-link {
+            color: #63B3ED;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid rgba(99, 179, 237, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .back-link:hover {
+            background: rgba(99, 179, 237, 0.2);
+            border-color: rgba(99, 179, 237, 0.5);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-container">
+        <header class="blog-header">
+            <h1 class="blog-title">Interactive Security Features: Building Engaging Cybersecurity Demonstrations</h1>
+            <div class="blog-meta">
+                <span>📅 Published: August 5, 2025</span> • 
+                <span>⏱️ 6 min read</span> • 
+                <span>👩‍💻 Ashley Smith</span>
+            </div>
+            <div class="blog-tags">
+                <span class="blog-tag">Interactive Design</span>
+                <span class="blog-tag">JavaScript</span>
+                <span class="blog-tag">CSS Animations</span>
+                <span class="blog-tag">User Experience</span>
+                <span class="blog-tag">Security Theme</span>
+                <span class="blog-tag">Portfolio Innovation</span>
+            </div>
+        </header>
+
+        <article class="blog-content">
+            <p>As a junior developer with cybersecurity aspirations, I just completed an exciting project that demonstrates how technical skills can be combined with creative thinking to create engaging security-themed experiences. I built an interactive "cyber mode" Easter egg for my portfolio that showcases both programming competency and security awareness through <span class="highlight">immersive user interactions</span>.</p>
+
+            <h2>The Challenge: Making Security Engaging</h2>
+            <p>One of the biggest challenges in cybersecurity communication is making abstract concepts tangible and memorable. How do you show someone what a "security mindset" looks like? How do you demonstrate that you understand both the technical and creative aspects of digital security?</p>
+
+            <p>My solution was to create an interactive Easter egg that transforms my entire portfolio into a "cyber mode" when activated, complete with Matrix-style effects and dramatic visual transformations.</p>
+
+            <h2>Technical Implementation Overview</h2>
+
+            <h3>JavaScript Event Handling & User Detection</h3>
+            <p>The feature is triggered by a double-click event on my name in the portfolio header. This required implementing sophisticated event handling:</p>
+
+            <div class="code-block">
+// Double-click detection with timing controls
+let clickTimeout;
+let clickCount = 0;
+
+nameElement.addEventListener('click', function(e) {
+    clickCount++;
+    if (clickCount === 1) {
+        clickTimeout = setTimeout(() => {
+            clickCount = 0;
+        }, 300);
+    } else if (clickCount === 2) {
+        clearTimeout(clickTimeout);
+        clickCount = 0;
+        activateCyberMode();
+    }
+});
+            </div>
+
+            <h3>Advanced CSS Animation Architecture</h3>
+            <p>The visual effects are powered by multiple layered CSS animations that create a complex, believable "system transformation" experience:</p>
+
+            <ul>
+                <li><strong>Full-Screen Glitch Overlay:</strong> Fixed-position pseudo-elements that cover the entire viewport with animated distortion effects</li>
+                <li><strong>RGB Color Separation:</strong> Text shadows that simulate chromatic aberration glitch effects</li>
+                <li><strong>Dynamic Scaling & Translation:</strong> Elements that pulse, shift, and transform to create digital instability</li>
+                <li><strong>Hue Rotation Cycles:</strong> Colors that cycle through the entire spectrum for a "system scanning" effect</li>
+            </ul>
+
+            <h2>Advanced Animation Features</h2>
+
+            <h3>Screen-Wide Glitch Effects</h3>
+            <p>The most impressive aspect is the full-screen overlay system that creates the illusion of the entire screen "glitching out":</p>
+
+            <div class="code-block">
+/* Full Screen Glitch Overlay */
+.cyber-mode::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 65, 0.1) 2px,
+        rgba(0, 255, 65, 0.1) 4px
+    );
+    animation: screenGlitch 3s infinite;
+    z-index: 9999;
+    pointer-events: none;
+}
+            </div>
+
+            <h3>Matrix-Style Visual Effects</h3>
+            <p>The animations include multiple synchronized effects that create a cohesive "cybersecurity system activation" experience:</p>
+
+            <ul>
+                <li><strong>Glitch Bars:</strong> Horizontal scanning lines that sweep across the screen with skewing effects</li>
+                <li><strong>Text Transformation:</strong> RGB split shadows and intensive movement patterns</li>
+                <li><strong>Color Theme Switching:</strong> Instant transformation from aviation blue to cyber green</li>
+                <li><strong>Background Morphing:</strong> Gradient shifts to darker, more technical color schemes</li>
+            </ul>
+
+            <h2>Security-Minded Design Decisions</h2>
+
+            <h3>User Experience & Accessibility</h3>
+            <p>Even with dramatic visual effects, I maintained focus on responsible development:</p>
+
+            <ul>
+                <li><strong>Non-Intrusive Activation:</strong> The feature only activates when deliberately triggered</li>
+                <li><strong>Performance Optimization:</strong> CSS animations instead of JavaScript-heavy effects</li>
+                <li><strong>Pointer Events:</strong> Overlay effects don't interfere with user interaction</li>
+            </ul>
+
+            <h3>Professional Messaging</h3>
+            <p>The Easter egg serves multiple professional purposes:</p>
+
+            <ul>
+                <li><strong>Technical Demonstration:</strong> Shows proficiency with complex CSS and JavaScript</li>
+                <li><strong>Creative Problem-Solving:</strong> Demonstrates ability to think beyond standard solutions</li>
+                <li><strong>Security Theme Integration:</strong> Reinforces cybersecurity career interests</li>
+                <li><strong>User Engagement:</strong> Creates memorable portfolio experience</li>
+            </ul>
+
+            <p>This project opens up possibilities for more interactive security demonstrations such as vulnerability scanning visualizations, encryption/decryption animations, or network security simulations. The key is making complex security concepts accessible through engaging, technically sophisticated interfaces.</p>
+
+            <p>The cyber mode Easter egg proves that security doesn't have to be intimidating. It can be exciting, engaging, and memorable when presented with the right combination of technical skill and creative vision.</p>
+        </article>
+
+            <div class="code-block">
+// Simple JWT middleware that taught me about security layers
+const authenticateToken = (req, res, next) => {
+    const token = req.headers['authorization']?.split(' ')[1];
+    
+    if (!token) {
+        // First lesson: Always log security events
+        logger.warn('Authentication attempt without token', {
+            ip: req.ip,
+            endpoint: req.path
+        });
+        return res.status(401).json({ error: 'Access denied' });
+    }
+    
+    // This is where I learned about graceful error handling
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) {
+            logger.warn('Invalid token attempt', { ip: req.ip });
+            return res.status(403).json({ error: 'Invalid token' });
+        }
+        req.user = user;
+        next();
+    });
+};
+            </div>
+
+            <h3>Role-Based Access Control: Aviation Meets Security</h3>
+            <p>Implementing RBAC for my aviation crew system taught me that security isn't just about keeping people out. It's about giving the right people access to the right things. In aviation, a pilot needs different access than a flight attendant, and that's exactly how RBAC should work in any application.</p>
+
+            <div class="code-block">
+// Simple but effective role-based middleware
+const authorizeRoles = (...allowedRoles) => {
+    return (req, res, next) => {
+        if (!req.user) {
+            return res.status(401).json({ error: 'Not authenticated' });
+        }
+        
+        if (!allowedRoles.includes(req.user.role)) {
+            // This taught me about information disclosure
+            // Don't tell attackers what they can't access
+            return res.status(403).json({ error: 'Access denied' });
+        }
+        
+        next();
+    };
+};
+
+// Usage that makes sense in context
+app.get('/api/flight-ops', authenticateToken, authorizeRoles('pilot', 'dispatcher'), getFlightOps);
+app.get('/api/passenger-services', authenticateToken, authorizeRoles('flight-attendant'), getPassengerServices);
+            </div>
+
+            <h2>🔍 OWASP ZAP: My First Vulnerability Scanner</h2>
+
+            <p>Using OWASP ZAP was intimidating at first. The interface looked complex, and I wasn't sure what I was looking for. But starting with basic scans taught me valuable lessons:</p>
+
+            <h3>What ZAP Taught Me About My Own Code</h3>
+            <ul>
+                <li><strong>Missing Security Headers:</strong> ZAP immediately flagged that I wasn't using security headers. That's when I discovered Helmet.js</li>
+                <li><strong>Weak Authentication:</strong> It showed me that my login endpoint was vulnerable to brute force attacks</li>
+                <li><strong>Information Disclosure:</strong> My error messages were revealing too much about my system structure</li>
+            </ul>
+
+            <div class="code-block">
+// Before ZAP: Basic error handling
+app.use((err, req, res, next) => {
+    res.status(500).json({ error: err.message }); // Too much info!
+});
+
+// After ZAP: Security-conscious error handling
+app.use((err, req, res, next) => {
+    logger.error('Application error', { 
+        error: err.message, 
+        stack: err.stack,
+        ip: req.ip 
+    });
+    
+    // Generic message for users, detailed logs for developers
+    res.status(500).json({ 
+        error: 'An error occurred. Please try again.' 
+    });
+});
+            </div>
+
+            <h2>📊 Audit Logging: Building Awareness of Access Patterns</h2>
+
+            <p>One of the most eye-opening aspects of my project was implementing comprehensive audit logging. It's not just about recording events. It's about building a story of what's happening in your application.</p>
+
+            <h3>What Gets Logged and Why</h3>
+            <ul>
+                <li><strong>Authentication Events:</strong> Every login attempt, success or failure</li>
+                <li><strong>Authorization Failures:</strong> When someone tries to access something they shouldn't</li>
+                <li><strong>Data Access Patterns:</strong> Who's accessing what data and when</li>
+                <li><strong>Configuration Changes:</strong> Any modifications to security settings</li>
+            </ul>
+
+            <div class="code-block">
+// Audit logging that tells a story
+const auditLogger = winston.createLogger({
+    level: 'info',
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json()
+    ),
+    transports: [
+        new winston.transports.File({ filename: 'audit.log' })
+    ]
+});
+
+// Usage throughout the application
+const logAuthEvent = (event, user, req, success = true) => {
+    auditLogger.info('Authentication Event', {
+        event,
+        userId: user?.id,
+        username: user?.username,
+        role: user?.role,
+        ip: req.ip,
+        userAgent: req.get('User-Agent'),
+        success,
+        timestamp: new Date().toISOString()
+    });
+};
+
+// In practice
+app.post('/api/login', async (req, res) => {
+    try {
+        const user = await authenticateUser(req.body);
+        logAuthEvent('LOGIN_SUCCESS', user, req, true);
+        // ... rest of login logic
+    } catch (error) {
+        logAuthEvent('LOGIN_FAILURE', req.body, req, false);
+        // ... handle failure
+    }
+});
+            </div>
+
+        </article>
+
+        <div class="back-to-portfolio">
+            <a href="/" class="back-link">← Back to Portfolio</a>
+        </div>
+    </div>
+</body>
+</html>

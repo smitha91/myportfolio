@@ -10,7 +10,7 @@
 const axios = require('axios');
 
 // Configuration
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = 'http://localhost:4000/api';
 const TEST_USER = {
     employeeId: 'AB12345',
     password: 'SecurePass123!',
@@ -64,7 +64,7 @@ const logSuccess = (message, data = '') => {
 // Demo functions
 async function testHealthCheck() {
     try {
-        const response = await axios.get('http://localhost:3000/health');
+        const response = await axios.get('http://localhost:4000/health');
         logSuccess('Health Check Passed', response.data);
         return true;
     } catch (error) {

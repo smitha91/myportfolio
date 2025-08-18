@@ -7,7 +7,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 // ===== BASIC MIDDLEWARE =====
 app.use(express.json());
@@ -23,8 +23,9 @@ app.set('views', './secureLoginFeature/views');
 
 // ===== STATIC FILE SERVING (BEFORE ROUTES) =====
 // Serve static files for each project
-app.use(express.static(path.join(__dirname, 'landingpage'))); // Root level static files
-app.use('/landingpage', express.static(path.join(__dirname, 'landingpage')));
+app.use(express.static(__dirname)); // Serve static files from root
+// Removed /landingpage static route since everything is now in root
+app.use('/blog', express.static(path.join(__dirname, 'blog'))); // Blog static files
 app.use('/charolotte', express.static(path.join(__dirname, 'charolotteicecream')));
 app.use('/taskmanagement', express.static(path.join(__dirname, 'taskmanagement')));
 app.use('/aviation-test', express.static(path.join(__dirname, 'aviation-crew-api/public')));
@@ -35,7 +36,7 @@ app.use('/skylinkmenu', express.static(path.join(__dirname, 'skylinkmenu')));
 
 // Main portfolio landing page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'landingpage', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Charlotte's Ice Cream project

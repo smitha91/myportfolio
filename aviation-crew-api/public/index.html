@@ -168,7 +168,7 @@
             font-weight: 400;
         }
         
-        /* Status bar - premium design */
+        /* Status bar - premium design (hidden until login) */
         .status-bar {
             background: linear-gradient(145deg, rgba(72, 187, 120, 0.15), rgba(72, 187, 120, 0.1));
             color: #48BB78;
@@ -177,7 +177,7 @@
             border-radius: 15px;
             text-align: center;
             font-weight: 500;
-            display: flex;
+            display: none; /* Hidden until login */
             justify-content: space-between;
             align-items: center;
             border: 1px solid rgba(72, 187, 120, 0.3);
@@ -626,11 +626,6 @@
             <p>Interactive API Demo - Login to explore crew management features</p>
         </div>
 
-    <div id="status-bar" class="status-bar">
-        <span>✅ System Online</span>
-        <span id="connection-status">Not Connected</span>
-    </div>
-
     <!-- Login Section -->
     <div id="login-section" class="login-section">
         <h2>🔐 Crew Login</h2>
@@ -671,6 +666,12 @@
         <p><strong>Employee ID:</strong> <span id="user-id"></span></p>
         <p><strong>Access Level:</strong> <span id="access-level"></span></p>
         <button onclick="logout()" class="btn-logout">Logout</button>
+    </div>
+
+    <!-- System Status Bar (shown after login) -->
+    <div id="status-bar" class="status-bar">
+        <span>✅ System Online</span>
+        <span id="connection-status">Not Connected</span>
     </div>
 
     <!-- Demo Section (unlocked after login) -->
@@ -719,7 +720,8 @@
     </div>
 
     <script>
-        const API_BASE = 'http://localhost:3000';
+                // API Configuration
+        const API_BASE = 'http://localhost:4000';
         let currentUser = null;
         let authToken = null;
 
@@ -730,7 +732,7 @@
             
             // Update status
             document.getElementById('status-bar').innerHTML = 
-                `<span>✅ Demo user selected: ${role}</span><span>Ready to Login</span>`;
+                `<span>✅ Demo user selected: ${role}</span><span>Logged In</span>`;
         }
 
         // Handle login form submission
@@ -782,6 +784,9 @@
             document.getElementById('user-id').textContent = currentUser.employeeId;
             document.getElementById('access-level').textContent = getRoleDescription(currentUser.role);
             
+            // Show status bar (now relevant after login)
+            document.getElementById('status-bar').style.display = 'flex';
+            
             // Show demo section
             document.getElementById('demo-section').classList.remove('hidden');
             
@@ -832,9 +837,10 @@
             // Show login section
             document.getElementById('login-section').classList.remove('hidden');
             
-            // Hide user info and demo section
+            // Hide user info, demo section, and status bar
             document.getElementById('user-info').style.display = 'none';
             document.getElementById('demo-section').classList.add('hidden');
+            document.getElementById('status-bar').style.display = 'none';
             
             // Reset form
             document.getElementById('employee-id').value = '';

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From 35,000 Feet to Code - Ashley Smith</title>
+    <link rel="stylesheet" href="../landingpage/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(10, 22, 40, 0.9);
+            border-radius: 20px;
+            border: 1px solid rgba(99, 179, 237, 0.2);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(99, 179, 237, 0.3);
+        }
+        .blog-title {
+            font-size: 2.5rem;
+            color: #F7FAFC;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+        .blog-meta {
+            color: #90CDF4;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .blog-tags {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .blog-tag {
+            background: rgba(99, 179, 237, 0.15);
+            color: #63B3ED;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(99, 179, 237, 0.3);
+        }
+        .blog-content {
+            line-height: 1.8;
+            color: #F7FAFC;
+        }
+        .blog-content h2 {
+            color: #90CDF4;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-left: 4px solid #63B3ED;
+            padding-left: 1rem;
+        }
+        .blog-content h3 {
+            color: #CBD5E0;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+        .blog-content ul, .blog-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+        .aviation-insight {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid #F59E0B;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+        .aviation-insight::before {
+            content: "✈️";
+            font-size: 1.5rem;
+            position: absolute;
+            top: 0.5rem;
+            left: -1.5rem;
+            background: rgba(10, 22, 40, 0.9);
+            padding: 0.2rem;
+            border-radius: 50%;
+        }
+        .career-transition {
+            background: rgba(99, 179, 237, 0.1);
+            border: 2px solid rgba(99, 179, 237, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .skill-transfer {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22C55E;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .code-block {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 179, 237, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            color: #E2E8F0;
+        }
+        .highlight {
+            background: rgba(99, 179, 237, 0.2);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #90CDF4;
+            font-weight: 500;
+        }
+        .quote-box {
+            background: rgba(99, 179, 237, 0.05);
+            border-left: 4px solid #63B3ED;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            position: relative;
+        }
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(99, 179, 237, 0.3);
+            position: absolute;
+            top: -1rem;
+            left: 1rem;
+            line-height: 1;
+        }
+        .parallels-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .parallel-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(99, 179, 237, 0.2);
+        }
+        .parallel-card h4 {
+            color: #90CDF4;
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .parallels-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .back-to-portfolio {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(99, 179, 237, 0.2);
+        }
+        .back-link {
+            color: #63B3ED;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid rgba(99, 179, 237, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .back-link:hover {
+            background: rgba(99, 179, 237, 0.2);
+            border-color: rgba(99, 179, 237, 0.5);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-container">
+        <header class="blog-header">
+            <h1 class="blog-title">From 35,000 Feet to Code: A Career Transformation Story</h1>
+            <div class="blog-meta">
+                <span>📅 Published: January 22, 2025</span> • 
+                <span>⏱️ 15 min read</span> • 
+                <span>👩‍💻 Ashley Smith</span>
+            </div>
+            <div class="blog-tags">
+                <span class="blog-tag">Career Change</span>
+                <span class="blog-tag">Aviation</span>
+                <span class="blog-tag">Cybersecurity</span>
+                <span class="blog-tag">Personal Journey</span>
+                <span class="blog-tag">Skills Transfer</span>
+            </div>
+        </header>
+
+        <article class="blog-content">
+            <div class="quote-box">
+                <p>The captain's voice crackled over the intercom: "Flight attendants, prepare for landing." As I secured the cabin for the thousandth time, I never imagined that within two years, I'd be securing digital systems instead of overhead bins. Sometimes the most unexpected journeys lead to the most rewarding destinations.</p>
+            </div>
+
+            <p>My path from flight attendant to cybersecurity professional wasn't linear, predictable, or easy. But it's been one of the most rewarding challenges I've ever undertaken. If you're considering a major career change, especially into tech, I want to share the real story—the struggles, breakthroughs, and surprising connections between seemingly unrelated fields.</p>
+
+            <h2>✈️ Life at 35,000 Feet: More Than Just Service</h2>
+
+            <p>For eight years, I worked as a flight attendant for a major airline. To most people, this means serving drinks and demonstrating safety procedures. But aviation is actually one of the most <span class="highlight">safety-conscious, procedure-driven, and technology-dependent</span> industries in the world. Every day, I was part of a complex system where small mistakes can have catastrophic consequences.</p>
+
+            <div class="aviation-insight">
+                <h3>The Real Skills of Aviation</h3>
+                <p>Flight attendants are more than service providers—we're safety professionals, emergency responders, and systems operators. We're trained to:</p>
+                <ul>
+                    <li><strong>Follow Complex Procedures:</strong> Every action has a protocol, and deviation can be dangerous</li>
+                    <li><strong>Think Under Pressure:</strong> Emergency situations require calm, systematic responses</li>
+                    <li><strong>Communicate Clearly:</strong> Safety depends on clear, precise communication</li>
+                    <li><strong>Manage Risk:</strong> Constantly assess and mitigate potential problems</li>
+                    <li><strong>Work in Teams:</strong> Coordination between crew members is essential for safety</li>
+                    <li><strong>Handle Diverse Stakeholders:</strong> From nervous passengers to demanding executives</li>
+                </ul>
+            </div>
+
+            <h3>The Moment Everything Changed</h3>
+
+            <p>The turning point came during a flight delay in Denver. We were stuck on the tarmac for three hours due to a "computer system issue." Passengers were frustrated, but I was fascinated. How could a computer problem ground an entire aircraft? What systems were involved? How were they protected from malicious interference?</p>
+
+            <p>That night in my hotel room, I started researching aviation cybersecurity. I discovered that modern aircraft are essentially flying computers with incredibly complex security requirements. The more I learned about protecting these systems, the more interested I became in cybersecurity as a field.</p>
+
+            <h2>🚀 The Decision to Change Course</h2>
+
+            <p>Deciding to leave aviation wasn't easy. I had seniority, good routes, and job security. But I also had something more valuable: <span class="highlight">transferable skills that I didn't even realize were relevant to cybersecurity</span>.</p>
+
+            <div class="career-transition">
+                <h3>💭 The Internal Debate</h3>
+                <p><strong>Concerns:</strong></p>
+                <ul>
+                    <li>"I'm not technical enough for cybersecurity"</li>
+                    <li>"I'm too old to start over in tech"</li>
+                    <li>"I don't have a computer science degree"</li>
+                    <li>"Aviation experience won't transfer to tech"</li>
+                </ul>
+                
+                <p><strong>Realizations:</strong></p>
+                <ul>
+                    <li>Cybersecurity is about more than technical skills—it's about thinking systematically about risk</li>
+                    <li>Many successful security professionals come from non-traditional backgrounds</li>
+                    <li>My aviation experience gives me unique perspectives on safety culture</li>
+                    <li>Learning is a skill I already possess—I've been trained on new aircraft, procedures, and systems throughout my career</li>
+                </ul>
+            </div>
+
+            <h2>📚 The Learning Journey Begins</h2>
+
+            <p>I started my cybersecurity education while still flying, using layovers and off-days to study. My approach was systematic—just like learning new aircraft systems in aviation.</p>
+
+            <h3>Phase 1: Foundation Building (Months 1-6)</h3>
+            <ul>
+                <li><strong>Online Courses:</strong> Started with CompTIA Security+ study materials</li>
+                <li><strong>Hands-on Learning:</strong> Set up virtual machines and practiced with security tools</li>
+                <li><strong>Reading:</strong> Consumed security blogs, threat intelligence reports, and industry news</li>
+                <li><strong>Networking:</strong> Attended virtual security meetups and conferences</li>
+            </ul>
+
+            <div class="aviation-insight">
+                <h3>Aviation Learning Habits Applied to Cybersecurity</h3>
+                <p>In aviation, we learn through:</p>
+                <ul>
+                    <li><strong>Repetition:</strong> Practice procedures until they're muscle memory</li>
+                    <li><strong>Scenario Training:</strong> What-if situations and emergency procedures</li>
+                    <li><strong>Continuous Education:</strong> Regular recertification and updates</li>
+                    <li><strong>Learning from Incidents:</strong> Studying what went wrong and why</li>
+                </ul>
+                <p>I applied these same methods to learning cybersecurity concepts.</p>
+            </div>
+
+            <h3>Phase 2: Practical Application (Months 6-12)</h3>
+            <ul>
+                <li><strong>Building Projects:</strong> Created my first secure web application</li>
+                <li><strong>Vulnerability Testing:</strong> Learned to use tools like OWASP ZAP and Nessus</li>
+                <li><strong>Documentation:</strong> Started writing about what I was learning</li>
+                <li><strong>Community Engagement:</strong> Joined security forums and Discord servers</li>
+            </ul>
+
+            <h2>🔗 Discovering the Connections</h2>
+
+            <p>As I dove deeper into cybersecurity, I was amazed by how many concepts paralleled aviation safety. The more I learned, the more I realized my aviation background was actually an <em>advantage</em>, not something to overcome.</p>
+
+            <div class="parallels-grid">
+                <div class="parallel-card">
+                    <h4>✈️ Aviation Safety Culture</h4>
+                    <p>Safety is everyone's responsibility. We report incidents without blame, learn from mistakes, and continuously improve procedures.</p>
+                </div>
+                <div class="parallel-card">
+                    <h4>🔒 Security Culture</h4>
+                    <p>Security is everyone's responsibility. We report vulnerabilities without blame, learn from breaches, and continuously improve defenses.</p>
+                </div>
+                
+                <div class="parallel-card">
+                    <h4>✈️ Defense in Depth</h4>
+                    <p>Multiple safety systems ensure that if one fails, others prevent accidents. Redundancy is critical.</p>
+                </div>
+                <div class="parallel-card">
+                    <h4>🔒 Defense in Depth</h4>
+                    <p>Multiple security layers ensure that if one is breached, others prevent compromise. Layered security is essential.</p>
+                </div>
+                
+                <div class="parallel-card">
+                    <h4>✈️ Threat Assessment</h4>
+                    <p>We constantly assess weather, mechanical issues, and other threats that could affect flight safety.</p>
+                </div>
+                <div class="parallel-card">
+                    <h4>🔒 Threat Modeling</h4>
+                    <p>We constantly assess cyber threats, vulnerabilities, and attack vectors that could affect system security.</p>
+                </div>
+                
+                <div class="parallel-card">
+                    <h4>✈️ Incident Response</h4>
+                    <p>Clear procedures for handling emergencies, from medical issues to security threats. Practice makes perfect.</p>
+                </div>
+                <div class="parallel-card">
+                    <h4>🔒 Incident Response</h4>
+                    <p>Clear procedures for handling security incidents, from malware to data breaches. Preparation is key.</p>
+                </div>
+            </div>
+
+            <h2>💼 The Transition Strategy</h2>
+
+            <p>I didn't quit aviation overnight. Instead, I created a careful transition plan that minimized risk while maximizing learning opportunities.</p>
+
+            <h3>The 18-Month Plan</h3>
+
+            <div class="skill-transfer">
+                <h4>Months 1-6: Foundation and Exploration</h4>
+                <ul>
+                    <li>Continue flying while studying cybersecurity fundamentals</li>
+                    <li>Build home lab for hands-on learning</li>
+                    <li>Start networking with security professionals</li>
+                    <li>Document learning journey publicly</li>
+                </ul>
+            </div>
+
+            <div class="skill-transfer">
+                <h4>Months 6-12: Skill Building and Portfolio Development</h4>
+                <ul>
+                    <li>Reduce flying schedule to part-time</li>
+                    <li>Build substantial cybersecurity projects</li>
+                    <li>Earn relevant certifications</li>
+                    <li>Apply for internships and entry-level positions</li>
+                </ul>
+            </div>
+
+            <div class="skill-transfer">
+                <h4>Months 12-18: Transition and Launch</h4>
+                <ul>
+                    <li>Secure first cybersecurity role</li>
+                    <li>Complete transition from aviation</li>
+                    <li>Continue learning in new role</li>
+                    <li>Mentor others making similar transitions</li>
+                </ul>
+            </div>
+
+            <h2>🛠️ Building Technical Skills</h2>
+
+            <p>The biggest challenge was developing technical skills while leveraging my existing strengths. I focused on areas where my aviation background provided context and understanding.</p>
+
+            <div class="code-block">
+// My First Security-Focused Project: Aviation Crew Communication System
+// This project combined my aviation knowledge with new technical skills
+
+const aviationSecurityProject = {
+    motivation: "Secure communication for flight crews",
+    technologies: ["Node.js", "Express", "JWT", "bcrypt", "OWASP ZAP"],
+    securityFeatures: [
+        "Role-based access control (Pilot, Flight Attendant, Dispatcher)",
+        "Encrypted communication channels",
+        "Audit logging for all communications",
+        "Multi-factor authentication",
+        "Session management and timeout",
+        "Input validation and sanitization"
+    ],
+    aviationContext: [
+        "Understanding of crew hierarchy and responsibilities",
+        "Knowledge of communication protocols and procedures",
+        "Appreciation for safety-critical information handling",
+        "Experience with regulated industry requirements"
+    ]
+};
+            </div>
+
+            <h3>Technical Skills I Developed</h3>
+            <ul>
+                <li><strong>Programming:</strong> JavaScript, Node.js, Python for security scripting</li>
+                <li><strong>Security Tools:</strong> OWASP ZAP, Burp Suite, Nessus, Wireshark</li>
+                <li><strong>Networking:</strong> TCP/IP, DNS, firewalls, VPNs</li>
+                <li><strong>Cryptography:</strong> Encryption, hashing, digital signatures, PKI</li>
+                <li><strong>Authentication:</strong> JWT, OAuth, SAML, multi-factor authentication</li>
+                <li><strong>Compliance:</strong> GDPR, HIPAA, SOX, industry frameworks</li>
+            </ul>
+
+            <h2>🌟 The Unexpected Advantages</h2>
+
+            <p>My aviation background provided advantages I never anticipated when I started this journey.</p>
+
+            <div class="aviation-insight">
+                <h3>Unique Perspectives from Aviation</h3>
+                <ul>
+                    <li><strong>Regulatory Mindset:</strong> Understanding how compliance frameworks actually work in practice</li>
+                    <li><strong>Safety Culture:</strong> Knowing how to build systems where failure isn't an option</li>
+                    <li><strong>Global Perspective:</strong> Experience with international regulations and cultural differences</li>
+                    <li><strong>Crisis Management:</strong> Remaining calm and following procedures under pressure</li>
+                    <li><strong>Communication Skills:</strong> Explaining technical concepts to non-technical stakeholders</li>
+                    <li><strong>Team Dynamics:</strong> Working effectively with diverse teams in high-stakes environments</li>
+                </ul>
+            </div>
+
+            <h3>Industry-Specific Knowledge</h3>
+            <p>My aviation experience opened doors to specialized cybersecurity roles:</p>
+            <ul>
+                <li><strong>Aviation Cybersecurity:</strong> Protecting aircraft systems and airport infrastructure</li>
+                <li><strong>Transportation Security:</strong> Securing logistics and supply chain systems</li>
+                <li><strong>Regulated Industries:</strong> Financial services, healthcare, energy—all with aviation-like compliance requirements</li>
+                <li><strong>Critical Infrastructure:</strong> Systems where downtime isn't just inconvenient—it's dangerous</li>
+            </ul>
+
+            <h2>💪 Overcoming Imposter Syndrome</h2>
+
+            <p>The biggest challenge wasn't technical—it was psychological. Entering a field dominated by computer science graduates when my background was in hospitality service felt overwhelming at times.</p>
+
+            <div class="quote-box">
+                <p>I remember my first security conference. Everyone seemed to speak in acronyms I didn't understand, discussing exploits and vulnerabilities with casual expertise. I felt like I didn't belong. But then I attended a session on security culture, and the speaker talked about the importance of diverse perspectives in security. That's when I realized my background wasn't a weakness—it was a strength.</p>
+            </div>
+
+            <h3>Strategies for Overcoming Doubt</h3>
+            <ul>
+                <li><strong>Focus on Learning:</strong> Instead of comparing myself to others, I focused on daily progress</li>
+                <li><strong>Document Progress:</strong> Keeping a learning journal helped me see how far I'd come</li>
+                <li><strong>Find Mentors:</strong> Connected with security professionals who valued diverse backgrounds</li>
+                <li><strong>Contribute Uniquely:</strong> Used my aviation experience to offer different perspectives</li>
+                <li><strong>Help Others:</strong> Teaching newcomers reinforced my own knowledge and confidence</li>
+            </ul>
+
+            <h2>🎯 Finding My Niche</h2>
+
+            <p>As I gained experience, I discovered that my unique background allowed me to specialize in areas where aviation experience was particularly valuable.</p>
+
+            <h3>Specialized Areas of Interest</h3>
+            <ul>
+                <li><strong>Security Culture Development:</strong> Helping organizations build safety-first security cultures</li>
+                <li><strong>Incident Response:</strong> Applying aviation's systematic approach to emergency procedures</li>
+                <li><strong>Risk Assessment:</strong> Using aviation's rigorous risk management frameworks</li>
+                <li><strong>Compliance and Auditing:</strong> Understanding regulated industry requirements</li>
+                <li><strong>Human Factors in Security:</strong> Addressing the human element in security systems</li>
+            </ul>
+
+            <h2>📈 The Results</h2>
+
+            <p>Eighteen months after starting my cybersecurity journey, I landed my first security role. But the real measure of success isn't just the job—it's the confidence to tackle complex security challenges using both technical skills and aviation-trained thinking.</p>
+
+            <h3>Current Portfolio Highlights</h3>
+            <ul>
+                <li><strong>Aviation Crew Communication System:</strong> Secure messaging platform with role-based access</li>
+                <li><strong>Security Assessment Tools:</strong> Automated vulnerability scanning and reporting</li>
+                <li><strong>Compliance Monitoring:</strong> Systems for tracking regulatory compliance</li>
+                <li><strong>Incident Response Automation:</strong> Scripts for rapid threat containment</li>
+                <li><strong>Security Training Materials:</strong> Educational content for non-technical staff</li>
+            </ul>
+
+            <div class="code-block">
+// Example: Security incident response inspired by aviation emergency procedures
+class SecurityIncidentResponse {
+    constructor() {
+        this.emergencyChecklist = [
+            'ASSESS: Determine scope and severity',
+            'ISOLATE: Contain the threat',
+            'COMMUNICATE: Alert stakeholders',
+            'INVESTIGATE: Gather evidence',
+            'REMEDIATE: Fix vulnerabilities',
+            'REVIEW: Learn and improve'
+        ];
+    }
+    
+    async handleIncident(incidentData) {
+        // Aviation-style systematic response
+        for (const step of this.emergencyChecklist) {
+            await this.executeStep(step, incidentData);
+            await this.logProgress(step, incidentData);
+        }
+    }
+    
+    // Just like aviation, every incident is a learning opportunity
+    async conductPostIncidentReview(incidentData) {
+        return {
+            whatWorked: this.analyzeSuccesses(incidentData),
+            whatDidntWork: this.analyzeFailures(incidentData),
+            preventionMeasures: this.recommendImprovements(incidentData),
+            trainingNeeds: this.identifySkillGaps(incidentData)
+        };
+    }
+}
+            </code>
+
+            <h2>💡 Lessons for Career Changers</h2>
+
+            <p>If you're considering a major career change, especially into cybersecurity, here's what I've learned:</p>
+
+            <h3>What Worked</h3>
+            <ul>
+                <li><strong>Systematic Learning:</strong> Treat career change like learning a new aircraft system—methodical and thorough</li>
+                <li><strong>Leverage Your Background:</strong> Don't hide your previous experience—find ways to make it relevant</li>
+                <li><strong>Build in Public:</strong> Document your learning journey and share your projects</li>
+                <li><strong>Network Authentically:</strong> Connect with people based on genuine interest, not just job seeking</li>
+                <li><strong>Stay Curious:</strong> The learning never stops in cybersecurity</li>
+            </ul>
+
+            <h3>What Was Challenging</h3>
+            <ul>
+                <li><strong>Technical Learning Curve:</strong> Programming and networking concepts took time to master</li>
+                <li><strong>Industry Jargon:</strong> Learning the language of cybersecurity was like learning a new dialect</li>
+                <li><strong>Salary Expectations:</strong> Starting over meant accepting entry-level compensation initially</li>
+                <li><strong>Credibility Building:</strong> Proving competence without traditional computer science credentials</li>
+            </ul>
+
+            <h2>🚀 Looking Forward</h2>
+
+            <p>My journey from flight attendant to cybersecurity professional has been challenging, rewarding, and full of unexpected connections. The skills I learned ensuring passenger safety at 35,000 feet have proven invaluable in protecting digital systems and data.</p>
+
+            <p>Aviation taught me that safety isn't about avoiding all risks—it's about understanding risks and managing them systematically. The same principle applies to cybersecurity. We can't eliminate all threats, but we can build systems and cultures that handle them effectively.</p>
+
+            <h3>What's Next</h3>
+            <ul>
+                <li><strong>Advanced Certifications:</strong> Pursuing specialized security certifications</li>
+                <li><strong>Industry Specialization:</strong> Focusing on transportation and critical infrastructure security</li>
+                <li><strong>Mentoring Others:</strong> Helping other career changers navigate their transitions</li>
+                <li><strong>Thought Leadership:</strong> Speaking about security culture and non-traditional backgrounds in cybersecurity</li>
+            </ul>
+
+            <h2>✈️ The Flight Continues</h2>
+
+            <p>Career changes are like long-haul flights—they require careful planning, patience during turbulence, and trust in the process. There were moments when I questioned whether I was on the right path, but every small victory reinforced that this journey was worth taking.</p>
+
+            <p>To anyone considering a similar transition: your background isn't a barrier—it's a differentiator. The cybersecurity industry needs diverse perspectives, and your unique experience could be exactly what makes you exceptional in this field.</p>
+
+            <div class="quote-box">
+                <p>From ensuring the safety of passengers at cruising altitude to protecting data and systems in the digital realm, the mission remains the same: vigilance, preparation, and an unwavering commitment to safety. The altitude has changed, but the responsibility—and the satisfaction of keeping people safe—remains.</p>
+            </div>
+
+            <p><em>The journey from aviation to cybersecurity taught me that career transformation isn't about abandoning your past—it's about building on it. Every experience, every skill, every challenge you've overcome is preparation for what comes next. Sometimes the best flights are the ones that take you somewhere you never expected to go.</em></p>
+        </article>
+
+        <div class="back-to-portfolio">
+            <a href="/" class="back-link">← Back to Portfolio</a>
+        </div>
+    </div>
+</body>
+</html>

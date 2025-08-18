@@ -488,13 +488,7 @@ body::before {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.status-item:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(135deg, 
-        rgba(99, 179, 237, 0.3) 0%, 
-        rgba(144, 205, 244, 0.2) 100%);
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
-}
+/* Removed hover effect - status items are not clickable */
 
 .status-icon {
     font-size: 1.3rem;
@@ -1059,13 +1053,7 @@ body::before {
     100% { opacity: 1; transform: scaleX(1); }
 }
 
-.stat-card:hover {
-    border-color: rgba(99, 179, 237, 0.8);
-    box-shadow: 
-        0 24px 48px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba(99, 179, 237, 0.3);
-    transform: translateY(-8px) scale(1.02);
-}
+/* Removed hover effect - stat cards are not clickable */
 
 .stat-icon {
     font-size: 3rem;

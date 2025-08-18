@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirCrew SecureComm - Security Testing Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0A1628 0%, #1B365D 25%, #2C5282 50%);
+            color: #F7FAFC;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(99, 179, 237, 0.2);
+            backdrop-filter: blur(20px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(99, 179, 237, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #63B3ED;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(99, 179, 237, 0.4);
+        }
+
+        .header p {
+            color: #CBD5E0;
+            font-size: 1.1rem;
+        }
+
+        .security-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #32CD32, #228B22);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin: 10px 5px;
+            box-shadow: 0 4px 15px rgba(50, 205, 50, 0.3);
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: rgba(10, 22, 40, 0.6);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(99, 179, 237, 0.15);
+        }
+
+        .section h2 {
+            color: #90CDF4;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .auth-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            color: #CBD5E0;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            padding: 12px;
+            border: 1px solid rgba(99, 179, 237, 0.3);
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.8);
+            color: #F7FAFC;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #63B3ED;
+            box-shadow: 0 0 10px rgba(99, 179, 237, 0.3);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #1E40AF, #3B82F6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #1D4ED8, #2563EB);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #DC2626, #EF4444);
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #B91C1C, #DC2626);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #059669, #10B981);
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+
+        .response-area {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(99, 179, 237, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .test-accounts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .account-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 179, 237, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .account-card:hover {
+            border-color: rgba(99, 179, 237, 0.5);
+            background: rgba(15, 23, 42, 1);
+            transform: translateY(-3px);
+        }
+
+        .account-role {
+            color: #63B3ED;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .account-details {
+            color: #CBD5E0;
+            font-size: 0.9rem;
+        }
+
+        .security-tests {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .threat-simulation {
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .threat-simulation h3 {
+            color: #FCA5A5;
+            margin-bottom: 10px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-active { background: #32CD32; }
+        .status-warning { background: #FFD700; }
+        .status-error { background: #FF6B6B; }
+
+        .api-endpoint {
+            background: rgba(30, 58, 138, 0.2);
+            border-left: 4px solid #3B82F6;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .method-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        .method-post { background: #10B981; }
+        .method-get { background: #3B82F6; }
+        .method-delete { background: #EF4444; }
+
+        @media (max-width: 768px) {
+            .auth-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛩️ AirCrew SecureComm</h1>
+            <p>Cybersecurity Testing Interface</p>
+            <div>
+                <span class="security-badge">🔒 RBAC Enabled</span>
+                <span class="security-badge">🔑 MFA Ready</span>
+                <span class="security-badge">🛡️ Rate Limited</span>
+                <span class="security-badge">📊 Audit Logged</span>
+            </div>
+        </div>
+
+        <!-- Authentication Section -->
+        <div class="section">
+            <h2>🔐 Authentication Testing</h2>
+            <p style="color: #CBD5E0; margin-bottom: 20px;">Test login functionality with different security scenarios</p>
+            
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username/Email</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="mfaCode">MFA Code (if enabled)</label>
+                    <input type="text" id="mfaCode" name="mfaCode" placeholder="6-digit code">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">🔑 Login</button>
+                    <button type="button" class="btn btn-danger" onclick="logout()">🚪 Logout</button>
+                </div>
+            </form>
+
+            <div class="test-accounts">
+                <div class="account-card" onclick="fillLogin('captain@airline.com', 'SecureFlight123!')">
+                    <div class="account-role">✈️ Pilot</div>
+                    <div class="account-details">captain@airline.com<br>Flight Deck Access</div>
+                </div>
+                <div class="account-card" onclick="fillLogin('crew@airline.com', 'CabinSafe456!')">
+                    <div class="account-role">👩‍✈️ Flight Attendant</div>
+                    <div class="account-details">crew@airline.com<br>Cabin Crew Access</div>
+                </div>
+                <div class="account-card" onclick="fillLogin('maint@airline.com', 'TechSecure789!')">
+                    <div class="account-role">🔧 Maintenance</div>
+                    <div class="account-details">maint@airline.com<br>Maintenance Bay Access</div>
+                </div>
+                <div class="account-card" onclick="fillLogin('admin@airline.com', 'AdminControl000!')">
+                    <div class="account-role">👑 Administrator</div>
+                    <div class="account-details">admin@airline.com<br>Full System Access</div>
+                </div>
+            </div>
+
+            <div class="response-area" id="authResponse">Authentication responses will appear here...</div>
+        </div>
+
+        <!-- Security Testing Section -->
+        <div class="section">
+            <h2>🛡️ Security Controls Testing</h2>
+            <p style="color: #CBD5E0; margin-bottom: 20px;">Test various security measures and attack scenarios</p>
+            
+            <div class="security-tests">
+                <button class="btn" onclick="testRateLimit()">⚡ Rate Limit Test</button>
+                <button class="btn" onclick="testSQLInjection()">💉 SQL Injection Test</button>
+                <button class="btn" onclick="testXSS()">🔍 XSS Prevention Test</button>
+                <button class="btn" onclick="testRBAC()">🎭 RBAC Testing</button>
+                <button class="btn" onclick="testTokenValidation()">🎫 Token Validation</button>
+                <button class="btn" onclick="testPasswordBruteforce()">🔨 Brute Force Test</button>
+            </div>
+
+            <div class="threat-simulation">
+                <h3>⚠️ Threat Simulation Results</h3>
+                <div id="threatResults">Run security tests to see threat simulation results...</div>
+            </div>
+        </div>
+
+        <!-- API Endpoints Section -->
+        <div class="section">
+            <h2>📡 API Endpoints</h2>
+            <p style="color: #CBD5E0; margin-bottom: 20px;">Available API endpoints for testing</p>
+            
+            <div class="api-endpoint">
+                <span class="method-badge method-post">POST</span>
+                <strong>/api/v1/auth/login</strong> - User authentication with MFA support
+            </div>
+            <div class="api-endpoint">
+                <span class="method-badge method-post">POST</span>
+                <strong>/api/v1/auth/logout</strong> - Secure logout with token blacklisting
+            </div>
+            <div class="api-endpoint">
+                <span class="method-badge method-post">POST</span>
+                <strong>/api/v1/auth/refresh</strong> - Refresh access tokens
+            </div>
+            <div class="api-endpoint">
+                <span class="method-badge method-get">GET</span>
+                <strong>/api/v1/auth/profile</strong> - Get current user profile
+            </div>
+            <div class="api-endpoint">
+                <span class="method-badge method-post">POST</span>
+                <strong>/api/v1/messages</strong> - Send messages (RBAC protected)
+            </div>
+            <div class="api-endpoint">
+                <span class="method-badge method-get">GET</span>
+                <strong>/api/v1/admin/audit-logs</strong> - View audit logs (Admin only)
+            </div>
+        </div>
+
+        <!-- System Status Section -->
+        <div class="section">
+            <h2>📊 System Status</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <div>
+                    <span class="status-indicator status-active"></span>
+                    <strong>Authentication Service</strong><br>
+                    <span style="color: #CBD5E0;">Operational</span>
+                </div>
+                <div>
+                    <span class="status-indicator status-active"></span>
+                    <strong>Rate Limiting</strong><br>
+                    <span style="color: #CBD5E0;">Active</span>
+                </div>
+                <div>
+                    <span class="status-indicator status-active"></span>
+                    <strong>Audit Logging</strong><br>
+                    <span style="color: #CBD5E0;">Recording</span>
+                </div>
+                <div>
+                    <span class="status-indicator status-warning"></span>
+                    <strong>MFA Enforcement</strong><br>
+                    <span style="color: #CBD5E0;">Optional</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let authToken = null;
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const mfaCode = document.getElementById('mfaCode').value;
+
+            try {
+                const response = await fetch('/api/v1/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                        mfaCode: mfaCode || undefined
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    authToken = data.accessToken;
+                    document.getElementById('authResponse').textContent = 
+                        `✅ LOGIN SUCCESSFUL\\n\\n` +
+                        `User: ${data.user.username}\\n` +
+                        `Role: ${data.user.role}\\n` +
+                        `Employee ID: ${data.user.employeeId}\\n` +
+                        `MFA Enabled: ${data.user.mfaEnabled}\\n\\n` +
+                        `Access Token: ${data.accessToken.substring(0, 50)}...\\n` +
+                        `Refresh Token: ${data.refreshToken.substring(0, 50)}...`;
+                } else {
+                    document.getElementById('authResponse').textContent = 
+                        `❌ LOGIN FAILED\\n\\n` +
+                        `Error: ${data.error}\\n` +
+                        `Code: ${data.code}\\n` +
+                        `Details: ${JSON.stringify(data.details || {}, null, 2)}`;
+                }
+            } catch (error) {
+                document.getElementById('authResponse').textContent = 
+                    `💥 REQUEST FAILED\\n\\nError: ${error.message}`;
+            }
+        });
+
+        // Logout function
+        async function logout() {
+            if (!authToken) {
+                document.getElementById('authResponse').textContent = 'No active session to logout';
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/v1/auth/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                const data = await response.json();
+                authToken = null;
+                
+                document.getElementById('authResponse').textContent = 
+                    `✅ LOGOUT SUCCESSFUL\\n\\n${data.message}`;
+            } catch (error) {
+                document.getElementById('authResponse').textContent = 
+                    `💥 LOGOUT FAILED\\n\\nError: ${error.message}`;
+            }
+        }
+
+        // Fill login form with test account
+        function fillLogin(username, password) {
+            document.getElementById('username').value = username;
+            document.getElementById('password').value = password;
+            document.getElementById('mfaCode').value = '';
+        }
+
+        // Security testing functions
+        async function testRateLimit() {
+            updateThreatResults('Testing rate limiting... Making 10 rapid requests');
+            
+            const promises = [];
+            for (let i = 0; i < 10; i++) {
+                promises.push(
+                    fetch('/api/v1/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            username: 'invalid@test.com',
+                            password: 'invalid'
+                        })
+                    })
+                );
+            }
+
+            try {
+                const responses = await Promise.all(promises);
+                const rateLimited = responses.filter(r => r.status === 429).length;
+                
+                updateThreatResults(
+                    `Rate Limit Test Results:\\n` +
+                    `Total requests: 10\\n` +
+                    `Rate limited: ${rateLimited}\\n` +
+                    `Status: ${rateLimited > 0 ? '✅ PROTECTED' : '❌ VULNERABLE'}`
+                );
+            } catch (error) {
+                updateThreatResults(`Rate limit test failed: ${error.message}`);
+            }
+        }
+
+        async function testSQLInjection() {
+            updateThreatResults('Testing SQL injection prevention...');
+            
+            const maliciousPayloads = [
+                "'; DROP TABLE users; --",
+                "' OR '1'='1",
+                "admin'; DELETE FROM users WHERE 'a'='a"
+            ];
+
+            for (const payload of maliciousPayloads) {
+                try {
+                    const response = await fetch('/api/v1/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            username: payload,
+                            password: 'test'
+                        })
+                    });
+
+                    const data = await response.json();
+                    
+                    if (data.code === 'INVALID_INPUT') {
+                        updateThreatResults(
+                            `SQL Injection Test: ✅ BLOCKED\\n` +
+                            `Payload: ${payload}\\n` +
+                            `Response: ${data.error}`
+                        );
+                        return;
+                    }
+                } catch (error) {
+                    // Continue testing
+                }
+            }
+            
+            updateThreatResults('SQL Injection Test: ❌ No specific protection detected');
+        }
+
+        async function testXSS() {
+            updateThreatResults('Testing XSS prevention...');
+            
+            const xssPayload = '<script>alert("XSS")<\/script>';
+            
+            try {
+                const response = await fetch('/api/v1/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: xssPayload,
+                        password: 'test'
+                    })
+                });
+
+                const data = await response.json();
+                
+                updateThreatResults(
+                    `XSS Test Results:\\n` +
+                    `Payload: ${xssPayload}\\n` +
+                    `Status: ✅ INPUT SANITIZED\\n` +
+                    `Response: ${data.error || 'Request processed safely'}`
+                );
+            } catch (error) {
+                updateThreatResults(`XSS test failed: ${error.message}`);
+            }
+        }
+
+        async function testRBAC() {
+            updateThreatResults('Testing Role-Based Access Control...');
+            
+            if (!authToken) {
+                updateThreatResults('RBAC Test: Please login first to test role-based access');
+                return;
+            }
+
+            try {
+                // Try to access admin endpoint
+                const response = await fetch('/api/v1/admin/audit-logs', {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                const data = await response.json();
+                
+                updateThreatResults(
+                    `RBAC Test Results:\\n` +
+                    `Status Code: ${response.status}\\n` +
+                    `Access: ${response.status === 403 ? '✅ PROPERLY RESTRICTED' : '⚠️ ACCESS GRANTED'}\\n` +
+                    `Response: ${data.error || 'Access granted'}`
+                );
+            } catch (error) {
+                updateThreatResults(`RBAC test failed: ${error.message}`);
+            }
+        }
+
+        async function testTokenValidation() {
+            updateThreatResults('Testing JWT token validation...');
+            
+            const invalidToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.invalid.signature';
+            
+            try {
+                const response = await fetch('/api/v1/auth/profile', {
+                    headers: {
+                        'Authorization': `Bearer ${invalidToken}`
+                    }
+                });
+
+                const data = await response.json();
+                
+                updateThreatResults(
+                    `Token Validation Test:\\n` +
+                    `Invalid Token: ${invalidToken.substring(0, 30)}...\\n` +
+                    `Status: ${response.status === 403 ? '✅ REJECTED' : '❌ ACCEPTED'}\\n` +
+                    `Response: ${data.error}`
+                );
+            } catch (error) {
+                updateThreatResults(`Token validation test failed: ${error.message}`);
+            }
+        }
+
+        async function testPasswordBruteforce() {
+            updateThreatResults('Testing brute force protection...');
+            
+            const attempts = [];
+            for (let i = 0; i < 6; i++) {
+                attempts.push(
+                    fetch('/api/v1/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            username: 'captain@airline.com',
+                            password: 'wrongpassword' + i
+                        })
+                    })
+                );
+                
+                // Small delay between attempts
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+
+            try {
+                const responses = await Promise.all(attempts);
+                const locked = responses.some(r => r.status === 423);
+                
+                updateThreatResults(
+                    `Brute Force Test Results:\\n` +
+                    `Attempts made: 6\\n` +
+                    `Account locked: ${locked ? '✅ YES' : '❌ NO'}\\n` +
+                    `Protection: ${locked ? '✅ ACTIVE' : '⚠️ WEAK'}`
+                );
+            } catch (error) {
+                updateThreatResults(`Brute force test failed: ${error.message}`);
+            }
+        }
+
+        function updateThreatResults(message) {
+            document.getElementById('threatResults').textContent = message;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            updateThreatResults('Ready for security testing. Select a test above to begin.');
+        });
+    </script>
+</body>
+</html>

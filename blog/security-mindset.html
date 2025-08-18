@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developing a Security Mindset - Ashley Smith</title>
+    <link rel="stylesheet" href="../landingpage/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(10, 22, 40, 0.9);
+            border-radius: 20px;
+            border: 1px solid rgba(99, 179, 237, 0.2);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(99, 179, 237, 0.3);
+        }
+        .blog-title {
+            font-size: 2.5rem;
+            color: #F7FAFC;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+        .blog-meta {
+            color: #90CDF4;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .blog-tags {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .blog-tag {
+            background: rgba(99, 179, 237, 0.15);
+            color: #63B3ED;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(99, 179, 237, 0.3);
+        }
+        .blog-content {
+            line-height: 1.8;
+            color: #F7FAFC;
+        }
+        .blog-content h2 {
+            color: #90CDF4;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-left: 4px solid #63B3ED;
+            padding-left: 1rem;
+        }
+        .blog-content h3 {
+            color: #CBD5E0;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+        .blog-content ul, .blog-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+        .mindset-framework {
+            background: rgba(99, 179, 237, 0.1);
+            border: 2px solid rgba(99, 179, 237, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        .mindset-framework::before {
+            content: "🧠";
+            font-size: 2rem;
+            position: absolute;
+            top: -1rem;
+            left: 1.5rem;
+            background: rgba(10, 22, 40, 0.9);
+            padding: 0 0.5rem;
+        }
+        .threat-model {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #EF4444;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .security-principle {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22C55E;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .aviation-parallel {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid #F59E0B;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .code-block {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 179, 237, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            color: #E2E8F0;
+        }
+        .highlight {
+            background: rgba(99, 179, 237, 0.2);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #90CDF4;
+            font-weight: 500;
+        }
+        .question-box {
+            background: rgba(99, 179, 237, 0.05);
+            border: 2px dashed rgba(99, 179, 237, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+        .back-to-portfolio {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(99, 179, 237, 0.2);
+        }
+        .back-link {
+            color: #63B3ED;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid rgba(99, 179, 237, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .back-link:hover {
+            background: rgba(99, 179, 237, 0.2);
+            border-color: rgba(99, 179, 237, 0.5);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-container">
+        <header class="blog-header">
+            <h1 class="blog-title">Developing a Security Mindset: Design Thinking for Cybersecurity</h1>
+            <div class="blog-meta">
+                <span>📅 Published: January 20, 2025</span> • 
+                <span>⏱️ 12 min read</span> • 
+                <span>👩‍💻 Ashley Smith</span>
+            </div>
+            <div class="blog-tags">
+                <span class="blog-tag">Security Mindset</span>
+                <span class="blog-tag">Design Thinking</span>
+                <span class="blog-tag">Threat Modeling</span>
+                <span class="blog-tag">Aviation Safety</span>
+                <span class="blog-tag">Risk Assessment</span>
+            </div>
+        </header>
+
+        <article class="blog-content">
+            <p>The most important skill I've developed in my cybersecurity journey isn't technical—it's learning to <span class="highlight">think like an attacker while building like a defender</span>. Coming from aviation, where safety thinking is ingrained in every procedure, I've discovered that developing a security mindset follows similar principles: systematic analysis, worst-case scenario planning, and defense in depth.</p>
+
+            <div class="aviation-parallel">
+                <h3>✈️ Aviation Safety Mindset → Cybersecurity Mindset</h3>
+                <p>In aviation, we don't just follow procedures—we understand <em>why</em> they exist. Every safety protocol is born from someone's mistake or near-miss. Similarly, every security control exists because someone, somewhere, got hacked. The mindset shift from "this seems secure" to "how would I break this?" has been transformational.</p>
+            </div>
+
+            <h2>🧠 The Security Design Thinking Framework</h2>
+
+            <p>After building several security-focused projects, I've developed a structured approach to security design thinking that combines design thinking methodology with threat modeling principles. This framework helps me approach every development decision through a security lens.</p>
+
+            <div class="mindset-framework">
+                <h3>The ATHESM Framework</h3>
+                <p><strong>A</strong>ssess → <strong>T</strong>hreat → <strong>H</strong>ypothesis → <strong>E</strong>valuate → <strong>S</strong>ecure → <strong>M</strong>onitor</p>
+                
+                <ol>
+                    <li><strong>Assess:</strong> Understand the system, users, and data flows</li>
+                    <li><strong>Threat:</strong> Model potential attack vectors and threat actors</li>
+                    <li><strong>Hypothesis:</strong> Form assumptions about what could go wrong</li>
+                    <li><strong>Evaluate:</strong> Test these hypotheses through security analysis</li>
+                    <li><strong>Secure:</strong> Implement appropriate controls and mitigations</li>
+                    <li><strong>Monitor:</strong> Continuously observe and improve security posture</li>
+                </ol>
+            </div>
+
+            <h2>🎯 Threat Modeling: Thinking Like an Attacker</h2>
+
+            <p>Threat modeling transformed from an academic exercise to a practical necessity when I started asking the right questions. Instead of "Is this secure?" I learned to ask "How would I attack this?"</p>
+
+            <div class="threat-model">
+                <h3>🚨 Real Threat Modeling Example: My Aviation Chat System</h3>
+                <p>Let me walk through how I threat-modeled my aviation crew communication system using the STRIDE methodology:</p>
+                
+                <ul>
+                    <li><strong>Spoofing:</strong> Could someone impersonate a pilot or dispatcher?</li>
+                    <li><strong>Tampering:</strong> Could flight-critical messages be modified in transit?</li>
+                    <li><strong>Repudiation:</strong> Could someone deny sending or receiving important communications?</li>
+                    <li><strong>Information Disclosure:</strong> Could unauthorized people access flight operations data?</li>
+                    <li><strong>Denial of Service:</strong> Could the system be overwhelmed during critical operations?</li>
+                    <li><strong>Elevation of Privilege:</strong> Could a flight attendant gain pilot-level system access?</li>
+                </ul>
+            </div>
+
+            <div class="code-block">
+// Threat Model Documentation Template I Use
+const threatModel = {
+    system: "Aviation Crew Communication System",
+    assets: [
+        { name: "Flight Operations Data", sensitivity: "HIGH", compliance: "FAA" },
+        { name: "Crew Personal Information", sensitivity: "MEDIUM", compliance: "GDPR" },
+        { name: "System Credentials", sensitivity: "CRITICAL", compliance: "SOX" }
+    ],
+    threatActors: [
+        { name: "Malicious Insider", capability: "HIGH", motivation: "Financial" },
+        { name: "External Hacker", capability: "MEDIUM", motivation: "Disruption" },
+        { name: "Nation State", capability: "VERY HIGH", motivation: "Intelligence" }
+    ],
+    attackVectors: [
+        { vector: "Credential Stuffing", likelihood: "HIGH", impact: "MEDIUM" },
+        { vector: "SQL Injection", likelihood: "MEDIUM", impact: "HIGH" },
+        { vector: "Social Engineering", likelihood: "HIGH", impact: "HIGH" }
+    ],
+    mitigations: [
+        { threat: "Credential Stuffing", control: "MFA + Rate Limiting" },
+        { threat: "SQL Injection", control: "Parameterized Queries + WAF" },
+        { threat: "Social Engineering", control: "Security Training + Verification Procedures" }
+    ]
+};
+            </div>
+
+            <h3>Questions I Now Ask Automatically</h3>
+
+            <div class="question-box">
+                <p><strong>For every new feature I build, I ask:</strong></p>
+                <ul>
+                    <li>"What's the worst thing that could happen if this component is compromised?"</li>
+                    <li>"What data does this touch, and who should never see it?"</li>
+                    <li>"If I were a malicious user, how would I abuse this functionality?"</li>
+                    <li>"What happens if this fails? Does it fail securely?"</li>
+                    <li>"How would I know if someone is attacking this right now?"</li>
+                </ul>
+            </div>
+
+            <h2>🔍 The Vulnerability Assessment Mindset</h2>
+
+            <p>Developing a vulnerability assessment mindset means shifting from "this works" to "this works securely." It's about building the habit of security-first thinking in every development decision.</p>
+
+            <h3>My Daily Security Checklist</h3>
+
+            <div class="security-principle">
+                <h4>🛡️ Before Writing Any Code</h4>
+                <ul>
+                    <li><strong>Input Validation:</strong> What could go wrong with user input?</li>
+                    <li><strong>Authentication:</strong> Who should access this and how do I verify them?</li>
+                    <li><strong>Authorization:</strong> What level of access does this require?</li>
+                    <li><strong>Data Handling:</strong> What sensitive data am I touching?</li>
+                    <li><strong>Error Handling:</strong> What information am I leaking in errors?</li>
+                    <li><strong>Logging:</strong> What security events should I capture?</li>
+                </ul>
+            </div>
+
+            <div class="code-block">
+// Security-First Code Review Questions I Use
+const securityReviewChecklist = {
+    authentication: [
+        "Are all endpoints properly authenticated?",
+        "Is authentication consistent across the application?",
+        "Are there any bypass opportunities?"
+    ],
+    authorization: [
+        "Is access control enforced server-side?",
+        "Can users access resources they shouldn't?",
+        "Are administrative functions properly protected?"
+    ],
+    inputValidation: [
+        "Is all user input validated and sanitized?",
+        "Are there injection vulnerabilities?",
+        "Is file upload functionality secure?"
+    ],
+    dataProtection: [
+        "Is sensitive data encrypted in transit and at rest?",
+        "Are passwords properly hashed?",
+        "Is PII properly handled and protected?"
+    ],
+    errorHandling: [
+        "Do error messages reveal sensitive information?",
+        "Are errors logged appropriately?",
+        "Is there a consistent error response format?"
+    ],
+    logging: [
+        "Are security events properly logged?",
+        "Is audit trail comprehensive?",
+        "Are logs protected from tampering?"
+    ]
+};
+            </div>
+
+            <h2>🔄 Defense in Depth: Learning from Aviation Safety</h2>
+
+            <p>In aviation, we never rely on a single safety system. If one thing fails, there are backup systems, procedures, and human verification. The same principle applies to cybersecurity—defense in depth.</p>
+
+            <div class="aviation-parallel">
+                <h3>✈️ Swiss Cheese Model Applied to Security</h3>
+                <p>In aviation safety, we use the "Swiss Cheese Model"—multiple layers of protection, each with holes, but the holes rarely align. When I apply this to security architecture:</p>
+                <ul>
+                    <li><strong>Layer 1:</strong> Network security (firewalls, VPN)</li>
+                    <li><strong>Layer 2:</strong> Application security (authentication, authorization)</li>
+                    <li><strong>Layer 3:</strong> Data security (encryption, access controls)</li>
+                    <li><strong>Layer 4:</strong> Monitoring security (logging, alerting)</li>
+                    <li><strong>Layer 5:</strong> Human security (training, procedures)</li>
+                </ul>
+            </div>
+
+            <h3>Practical Defense in Depth Implementation</h3>
+
+            <div class="code-block">
+// Multi-layered Security Implementation
+class DefenseInDepthExample {
+    async processUserRequest(req, res) {
+        try {
+            // Layer 1: Network-level protection (handled by infrastructure)
+            
+            // Layer 2: Rate limiting
+            await this.rateLimiter.checkLimit(req.ip);
+            
+            // Layer 3: Authentication
+            const token = await this.authenticateRequest(req);
+            
+            // Layer 4: Authorization
+            await this.authorizeAction(token.user, req.action);
+            
+            // Layer 5: Input validation
+            const validatedData = await this.validateInput(req.body);
+            
+            // Layer 6: Business logic with security checks
+            const result = await this.secureBusinessLogic(validatedData, token.user);
+            
+            // Layer 7: Output filtering
+            const sanitizedResult = this.sanitizeOutput(result);
+            
+            // Layer 8: Audit logging
+            await this.logSecurityEvent('REQUEST_PROCESSED', {
+                user: token.user.id,
+                action: req.action,
+                success: true
+            });
+            
+            return res.json(sanitizedResult);
+            
+        } catch (error) {
+            // Security-conscious error handling
+            await this.logSecurityEvent('REQUEST_FAILED', {
+                error: error.message,
+                ip: req.ip,
+                action: req.action
+            });
+            
+            return res.status(500).json({ 
+                error: 'Request could not be processed' 
+            });
+        }
+    }
+}
+            </code>
+
+            <h2>🚨 Incident Response Mindset</h2>
+
+            <p>One of the most valuable mindset shifts has been preparing for failure. Not "if" something goes wrong, but "when" it goes wrong. This comes directly from aviation's culture of preparedness.</p>
+
+            <div class="aviation-parallel">
+                <h3>✈️ Emergency Procedures → Incident Response</h3>
+                <p>In aviation, we practice emergency procedures until they're muscle memory. We don't hope for clear weather—we train for the worst weather. Similarly, I've learned to build incident response thinking into every system I create.</p>
+            </div>
+
+            <h3>Security Incident Response Planning</h3>
+
+            <div class="security-principle">
+                <h4>🚨 My Incident Response Mindset Questions</h4>
+                <ul>
+                    <li><strong>Detection:</strong> How will I know if this system is under attack?</li>
+                    <li><strong>Analysis:</strong> What information do I need to understand the scope?</li>
+                    <li><strong>Containment:</strong> How can I quickly limit the damage?</li>
+                    <li><strong>Eradication:</strong> How do I remove the threat from the system?</li>
+                    <li><strong>Recovery:</strong> How do I safely restore normal operations?</li>
+                    <li><strong>Lessons Learned:</strong> What can I improve for next time?</li>
+                </ul>
+            </div>
+
+            <div class="code-block">
+// Incident Response Automation I'm Building
+class SecurityIncidentResponse {
+    async detectAnomalousActivity() {
+        const threats = await this.threatDetectionEngine.scan();
+        
+        for (const threat of threats) {
+            await this.handleThreat(threat);
+        }
+    }
+    
+    async handleThreat(threat) {
+        // Immediate containment
+        if (threat.severity === 'CRITICAL') {
+            await this.emergencyContainment(threat);
+        }
+        
+        // Alert security team
+        await this.alertSecurityTeam(threat);
+        
+        // Begin forensic data collection
+        await this.preserveEvidence(threat);
+        
+        // Execute response playbook
+        await this.executePlaybook(threat.type);
+    }
+    
+    async emergencyContainment(threat) {
+        // Disable affected accounts
+        await this.disableCompromisedAccounts(threat.affectedUsers);
+        
+        // Block malicious IPs
+        await this.updateFirewallRules(threat.maliciousIPs);
+        
+        // Isolate affected systems
+        await this.isolateCompromisedSystems(threat.affectedSystems);
+        
+        // Notify incident commander
+        await this.notifyIncidentCommander(threat);
+    }
+}
+            </div>
+
+            <h2>📚 Continuous Learning and Adaptation</h2>
+
+            <p>The security landscape changes constantly, just like weather conditions in aviation. What worked yesterday might not work tomorrow. This requires a mindset of continuous learning and adaptation.</p>
+
+            <h3>My Security Learning Framework</h3>
+
+            <div class="mindset-framework">
+                <h4>📖 Daily Security Habits</h4>
+                <ul>
+                    <li><strong>Threat Intelligence:</strong> Review latest vulnerability disclosures</li>
+                    <li><strong>Tool Exploration:</strong> Test new security tools and techniques</li>
+                    <li><strong>Code Review:</strong> Analyze security-focused open source projects</li>
+                    <li><strong>Community Engagement:</strong> Participate in security forums and discussions</li>
+                    <li><strong>Documentation:</strong> Record lessons learned and share knowledge</li>
+                </ul>
+            </div>
+
+            <h2>🎯 Practical Application: Security Design Reviews</h2>
+
+            <p>I now conduct formal security design reviews for every project, treating them like pre-flight safety briefings in aviation.</p>
+
+            <div class="code-block">
+// Security Design Review Template
+const securityDesignReview = {
+    projectName: "Aviation Crew Chat Enhancement",
+    reviewDate: "2025-01-20",
+    stakeholders: ["Development Team", "Security Team", "Operations"],
+    
+    threatModel: {
+        assets: ["User credentials", "Flight data", "Communication logs"],
+        threats: ["Data breach", "System compromise", "Service disruption"],
+        controls: ["Encryption", "Authentication", "Monitoring"]
+    },
+    
+    securityRequirements: [
+        "All data must be encrypted in transit and at rest",
+        "Multi-factor authentication required for admin access",
+        "All security events must be logged and monitored",
+        "System must fail securely in case of errors"
+    ],
+    
+    riskAssessment: [
+        { risk: "Credential compromise", probability: "Medium", impact: "High" },
+        { risk: "Data interception", probability: "Low", impact: "High" },
+        { risk: "Service disruption", probability: "Medium", impact: "Medium" }
+    ],
+    
+    mitigationStrategies: [
+        "Implement OAuth 2.0 with PKCE",
+        "Use TLS 1.3 for all communications",
+        "Deploy comprehensive monitoring",
+        "Implement circuit breakers and graceful degradation"
+    ]
+};
+            </code>
+
+            <h2>🌟 The Cultural Shift: Security as a Core Value</h2>
+
+            <p>The biggest transformation in my thinking has been viewing security not as a constraint, but as a core value that enables trust and reliability. Just like safety in aviation isn't a restriction—it's what makes flight possible.</p>
+
+            <div class="aviation-parallel">
+                <h3>✈️ Safety Culture → Security Culture</h3>
+                <p>In aviation, safety culture means everyone takes responsibility for safety, speaks up about concerns, and learns from mistakes without blame. I'm working to build the same security culture in my development work:</p>
+                <ul>
+                    <li><strong>Shared Responsibility:</strong> Security is everyone's job, not just the security team's</li>
+                    <li><strong>Open Communication:</strong> Encourage reporting of security concerns without fear</li>
+                    <li><strong>Learning Culture:</strong> Treat security incidents as learning opportunities</li>
+                    <li><strong>Continuous Improvement:</strong> Regular security process reviews and updates</li>
+                </ul>
+            </div>
+
+            <h2>🚀 From Mindset to Practice</h2>
+
+            <p>Developing a security mindset isn't just about thinking differently—it's about building systems and processes that reflect security-first thinking. Here's how I've translated mindset into practice:</p>
+
+            <h3>Security-First Development Workflow</h3>
+            <ol>
+                <li><strong>Design Phase:</strong> Threat modeling and security requirements</li>
+                <li><strong>Development:</strong> Secure coding practices and security linting</li>
+                <li><strong>Testing:</strong> Security-focused testing and vulnerability scanning</li>
+                <li><strong>Deployment:</strong> Security configuration validation and monitoring setup</li>
+                <li><strong>Operation:</strong> Continuous monitoring and incident response readiness</li>
+            </ol>
+
+            <h3>Measuring Security Mindset Success</h3>
+            <ul>
+                <li><strong>Proactive Identification:</strong> Finding security issues before they become problems</li>
+                <li><strong>Comprehensive Documentation:</strong> Clear security rationale for all design decisions</li>
+                <li><strong>Effective Communication:</strong> Ability to explain security concepts to non-technical stakeholders</li>
+                <li><strong>Continuous Learning:</strong> Staying current with evolving threats and mitigations</li>
+            </ul>
+
+            <h2>💡 Advice for Developing Your Security Mindset</h2>
+
+            <p>Based on my journey from aviation to cybersecurity, here's how to develop your own security mindset:</p>
+
+            <div class="security-principle">
+                <h4>🧠 Practical Steps to Security Thinking</h4>
+                <ol>
+                    <li><strong>Start with "What if...?"</strong> - Question every assumption and consider failure modes</li>
+                    <li><strong>Learn from Others' Mistakes:</strong> Study security breaches and understand how they happened</li>
+                    <li><strong>Practice Threat Modeling:</strong> Make it a habit, not a formal process</li>
+                    <li><strong>Build Security Muscle Memory:</strong> Practice secure coding until it's automatic</li>
+                    <li><strong>Join the Community:</strong> Learn from experienced security professionals</li>
+                    <li><strong>Document Your Journey:</strong> Track your learning and share insights</li>
+                </ol>
+            </div>
+
+            <h2>🎯 The Ongoing Journey</h2>
+
+            <p>Developing a security mindset is not a destination—it's an ongoing journey of growth, learning, and adaptation. Just like in aviation, where we never stop training and never stop improving our safety procedures, cybersecurity requires constant vigilance and continuous learning.</p>
+
+            <p>My aviation background taught me that the best safety professionals are those who combine technical knowledge with the right mindset. The same is true in cybersecurity. Technical skills can be learned, but the security mindset—the way of thinking that automatically considers threats, evaluates risks, and plans for failure—that's what separates good security professionals from great ones.</p>
+
+            <p>As I continue my journey from flight attendant to cybersecurity professional, I'm excited to apply this security mindset to increasingly complex challenges. The foundation is solid, the framework is proven, and the mindset is developing. Time to take this security thinking to the next level.</p>
+
+            <p><em>Security mindset isn't about being paranoid—it's about being prepared. It's not about seeing threats everywhere—it's about understanding systems well enough to protect them effectively. It's the difference between hoping nothing goes wrong and being ready when something does.</em></p>
+        </article>
+
+        <div class="back-to-portfolio">
+            <a href="/" class="back-link">← Back to Portfolio</a>
+        </div>
+    </div>
+</body>
+</html>

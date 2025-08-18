@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Cybersecurity Goals - Ashley Smith</title>
+    <link rel="stylesheet" href="../landingpage/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(10, 22, 40, 0.9);
+            border-radius: 20px;
+            border: 1px solid rgba(99, 179, 237, 0.2);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(99, 179, 237, 0.3);
+        }
+        .blog-title {
+            font-size: 2.5rem;
+            color: #F7FAFC;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+        .blog-meta {
+            color: #90CDF4;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .blog-tags {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .blog-tag {
+            background: rgba(99, 179, 237, 0.15);
+            color: #63B3ED;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(99, 179, 237, 0.3);
+        }
+        .blog-content {
+            line-height: 1.8;
+            color: #F7FAFC;
+        }
+        .blog-content h2 {
+            color: #90CDF4;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-left: 4px solid #63B3ED;
+            padding-left: 1rem;
+        }
+        .blog-content h3 {
+            color: #CBD5E0;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+        .blog-content ul, .blog-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+        .code-block {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 179, 237, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            color: #E2E8F0;
+        }
+        .highlight {
+            background: rgba(99, 179, 237, 0.2);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #90CDF4;
+            font-weight: 500;
+        }
+        .learning-goal {
+            background: rgba(99, 179, 237, 0.1);
+            border-left: 4px solid #63B3ED;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .priority-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .priority-high {
+            background: rgba(239, 68, 68, 0.2);
+            color: #FCA5A5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .priority-medium {
+            background: rgba(245, 158, 11, 0.2);
+            color: #FCD34D;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .priority-explore {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86EFAC;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        .timeline {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .timeline h4 {
+            color: #90CDF4;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .back-to-portfolio {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(99, 179, 237, 0.2);
+        }
+        .back-link {
+            color: #63B3ED;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid rgba(99, 179, 237, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .back-link:hover {
+            background: rgba(99, 179, 237, 0.2);
+            border-color: rgba(99, 179, 237, 0.5);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-container">
+        <header class="blog-header">
+            <h1 class="blog-title">Advanced Cybersecurity Goals: Beyond the Basics</h1>
+            <div class="blog-meta">
+                <span>📅 Published: January 18, 2025</span> • 
+                <span>⏱️ 10 min read</span> • 
+                <span>👩‍💻 Ashley Smith</span>
+            </div>
+            <div class="blog-tags">
+                <span class="blog-tag">Future Learning</span>
+                <span class="blog-tag">MFA</span>
+                <span class="blog-tag">Encryption</span>
+                <span class="blog-tag">Career Development</span>
+                <span class="blog-tag">Security Strategy</span>
+            </div>
+        </header>
+
+        <article class="blog-content">
+            <p>Now that I've built my first secure application and developed a <span class="highlight">security mindset</span>, it's time to set ambitious goals for the next phase of my cybersecurity journey. These aren't just technical skills I want to learn—they're stepping stones toward becoming a security professional who can design and implement enterprise-level security solutions.</p>
+
+            <h2>🎯 My Learning Roadmap: From Basic to Advanced</h2>
+
+            <p>After reflecting on my current skills and industry demands, I've identified key areas that will transform me from a security-conscious developer to a cybersecurity specialist. Here's my strategic learning plan for the next 12-18 months:</p>
+
+            <div class="learning-goal">
+                <div class="priority-badge priority-high">HIGH PRIORITY</div>
+                <h3>🔐 Real Multi-Factor Authentication Implementation</h3>
+                <p><strong>Current State:</strong> I understand the theory behind MFA and have implemented basic JWT authentication.</p>
+                <p><strong>Goal:</strong> Build production-ready MFA systems using industry-standard protocols and services.</p>
+                
+                <h4>Specific Learning Objectives:</h4>
+                <ul>
+                    <li><strong>TOTP (Time-based One-Time Passwords):</strong> Implement Google Authenticator-style MFA</li>
+                    <li><strong>SMS/Email MFA:</strong> Build secure, rate-limited OTP delivery systems</li>
+                    <li><strong>Biometric Integration:</strong> Explore WebAuthn and FIDO2 standards</li>
+                    <li><strong>Recovery Mechanisms:</strong> Design secure account recovery flows</li>
+                    <li><strong>User Experience:</strong> Balance security with usability in MFA design</li>
+                </ul>
+
+                <div class="code-block">
+// Goal: Implement this kind of comprehensive MFA system
+const mfaController = {
+    async setupTOTP(userId) {
+        // Generate secret, create QR code, store backup codes
+    },
+    
+    async verifyTOTP(userId, token) {
+        // Verify with time window tolerance, prevent replay attacks
+    },
+    
+    async sendSMSOTP(userId, phoneNumber) {
+        // Rate limiting, secure SMS delivery, audit logging
+    },
+    
+    async initiateWebAuthn(userId) {
+        // Challenge generation, credential creation
+    }
+};
+                </div>
+
+                <div class="timeline">
+                    <h4>📅 Timeline: Months 1-3</h4>
+                    <ul>
+                        <li><strong>Month 1:</strong> TOTP implementation with Google Authenticator</li>
+                        <li><strong>Month 2:</strong> SMS/Email OTP with rate limiting and security considerations</li>
+                        <li><strong>Month 3:</strong> WebAuthn/FIDO2 exploration and basic implementation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="learning-goal">
+                <div class="priority-badge priority-high">HIGH PRIORITY</div>
+                <h3>🔄 Advanced Token Management & Rotation</h3>
+                <p><strong>Current State:</strong> Basic JWT implementation with static secrets and simple expiration.</p>
+                <p><strong>Goal:</strong> Implement enterprise-grade token management with rotation, revocation, and security monitoring.</p>
+                
+                <h4>Specific Learning Objectives:</h4>
+                <ul>
+                    <li><strong>Refresh Token Strategy:</strong> Implement secure token refresh mechanisms</li>
+                    <li><strong>Token Rotation:</strong> Automatic key rotation and token invalidation</li>
+                    <li><strong>Revocation Systems:</strong> Real-time token blacklisting and revocation</li>
+                    <li><strong>Token Analytics:</strong> Monitoring for suspicious token usage patterns</li>
+                    <li><strong>Cross-Service Authentication:</strong> OAuth 2.0 and OpenID Connect implementation</li>
+                </ul>
+
+                <div class="code-block">
+// Advanced token management I want to master
+class TokenManager {
+    constructor() {
+        this.keyRotationSchedule = new Map();
+        this.revokedTokens = new Set();
+        this.tokenAnalytics = new TokenAnalytics();
+    }
+    
+    async generateTokenPair(user) {
+        // Create access token (short-lived) and refresh token (longer-lived)
+        // Implement token binding and fingerprinting
+    }
+    
+    async rotateRefreshToken(oldRefreshToken) {
+        // Validate old token, generate new pair, invalidate old tokens
+        // Implement rotation detection for security
+    }
+    
+    async revokeAllUserTokens(userId, reason) {
+        // Emergency revocation with audit trail
+        // Notify all services of revocation
+    }
+    
+    async analyzeTokenUsage(token) {
+        // Detect anomalous usage patterns
+        // Geographic analysis, timing patterns, etc.
+    }
+}
+                </div>
+
+                <div class="timeline">
+                    <h4>📅 Timeline: Months 2-4</h4>
+                    <ul>
+                        <li><strong>Month 2:</strong> Refresh token implementation and rotation strategy</li>
+                        <li><strong>Month 3:</strong> Token revocation and blacklisting systems</li>
+                        <li><strong>Month 4:</strong> OAuth 2.0 server implementation and token analytics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="learning-goal">
+                <div class="priority-badge priority-medium">MEDIUM PRIORITY</div>
+                <h3>🔒 Data Encryption & Key Management</h3>
+                <p><strong>Current State:</strong> Basic understanding of encryption concepts, password hashing with bcrypt.</p>
+                <p><strong>Goal:</strong> Implement comprehensive data encryption strategies with proper key management.</p>
+                
+                <h4>Specific Learning Objectives:</h4>
+                <ul>
+                    <li><strong>Encryption at Rest:</strong> Database encryption, file system encryption</li>
+                    <li><strong>Encryption in Transit:</strong> TLS implementation, certificate management</li>
+                    <li><strong>Key Management:</strong> Key generation, rotation, and secure storage</li>
+                    <li><strong>Application-Level Encryption:</strong> Field-level encryption for sensitive data</li>
+                    <li><strong>Hardware Security Modules (HSMs):</strong> Understanding and implementation</li>
+                </ul>
+
+                <div class="code-block">
+// Encryption systems I want to build
+class EncryptionService {
+    constructor() {
+        this.keyManagement = new KeyManager();
+        this.encryptionMetrics = new EncryptionMetrics();
+    }
+    
+    async encryptSensitiveField(data, context) {
+        // Field-level encryption with context-aware keys
+        // Implement envelope encryption for large data
+    }
+    
+    async rotateEncryptionKeys() {
+        // Seamless key rotation without data loss
+        // Batch re-encryption of existing data
+    }
+    
+    async setupTLSCertificates() {
+        // Automated certificate management
+        // Certificate transparency monitoring
+    }
+}
+                </div>
+
+                <div class="timeline">
+                    <h4>📅 Timeline: Months 4-7</h4>
+                    <ul>
+                        <li><strong>Month 4:</strong> Database and application-level encryption</li>
+                        <li><strong>Month 5:</strong> Key management systems and rotation strategies</li>
+                        <li><strong>Month 6:</strong> TLS implementation and certificate management</li>
+                        <li><strong>Month 7:</strong> HSM integration and advanced key security</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="learning-goal">
+                <div class="priority-badge priority-medium">MEDIUM PRIORITY</div>
+                <h3>🚨 Security Incident Response & Monitoring</h3>
+                <p><strong>Current State:</strong> Basic audit logging and error handling.</p>
+                <p><strong>Goal:</strong> Build comprehensive security monitoring and incident response capabilities.</p>
+                
+                <h4>Specific Learning Objectives:</h4>
+                <ul>
+                    <li><strong>SIEM Implementation:</strong> Security Information and Event Management</li>
+                    <li><strong>Threat Detection:</strong> Automated anomaly detection and alerting</li>
+                    <li><strong>Incident Response:</strong> Automated response and containment procedures</li>
+                    <li><strong>Forensics:</strong> Digital forensics and evidence collection</li>
+                    <li><strong>Compliance Monitoring:</strong> GDPR, HIPAA, SOX compliance tracking</li>
+                </ul>
+
+                <div class="timeline">
+                    <h4>📅 Timeline: Months 6-9</h4>
+                    <ul>
+                        <li><strong>Month 6:</strong> SIEM setup and log aggregation</li>
+                        <li><strong>Month 7:</strong> Threat detection rules and automated alerting</li>
+                        <li><strong>Month 8:</strong> Incident response automation and playbooks</li>
+                        <li><strong>Month 9:</strong> Forensics tools and compliance monitoring</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="learning-goal">
+                <div class="priority-badge priority-explore">EXPLORATION</div>
+                <h3>☁️ Cloud Security & DevSecOps</h3>
+                <p><strong>Current State:</strong> Basic understanding of cloud concepts, local development focus.</p>
+                <p><strong>Goal:</strong> Master cloud security architectures and DevSecOps practices.</p>
+                
+                <h4>Specific Learning Objectives:</h4>
+                <ul>
+                    <li><strong>AWS/Azure Security:</strong> IAM, VPC, security groups, cloud-native security</li>
+                    <li><strong>Container Security:</strong> Docker and Kubernetes security best practices</li>
+                    <li><strong>Infrastructure as Code:</strong> Terraform with security scanning</li>
+                    <li><strong>CI/CD Security:</strong> Secure deployment pipelines, secret management</li>
+                    <li><strong>Zero Trust Architecture:</strong> Implementing zero trust principles</li>
+                </ul>
+
+                <div class="timeline">
+                    <h4>📅 Timeline: Months 8-12</h4>
+                    <ul>
+                        <li><strong>Months 8-9:</strong> AWS security services and cloud architecture</li>
+                        <li><strong>Months 10-11:</strong> Container security and Kubernetes hardening</li>
+                        <li><strong>Month 12:</strong> DevSecOps pipeline implementation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>🎓 Certification and Professional Development Goals</h2>
+
+            <p>Technical skills need to be complemented by industry recognition and formal learning:</p>
+
+            <h3>Target Certifications (12-18 months)</h3>
+            <ul>
+                <li><strong>CompTIA Security+:</strong> Foundation certification to validate core concepts</li>
+                <li><strong>AWS Certified Security - Specialty:</strong> Cloud security expertise</li>
+                <li><strong>Certified Ethical Hacker (CEH):</strong> Offensive security understanding</li>
+                <li><strong>CISSP Associate:</strong> Long-term goal for security management</li>
+            </ul>
+
+            <h3>Professional Network Development</h3>
+            <ul>
+                <li>Join local cybersecurity meetups and conferences</li>
+                <li>Contribute to open-source security projects</li>
+                <li>Write technical blog posts about my learning journey</li>
+                <li>Mentor other career-changers entering cybersecurity</li>
+            </ul>
+
+            <h2>🛠️ Practical Projects to Build Skills</h2>
+
+            <p>Each learning goal will be reinforced with hands-on projects:</p>
+
+            <div class="code-block">
+// Project Ideas to Reinforce Learning
+
+1. "SecureChat Pro" - Enhanced chat application with:
+   - Full MFA implementation (TOTP, SMS, WebAuthn)
+   - Advanced token management and rotation
+   - End-to-end encryption
+   - Comprehensive audit logging
+
+2. "FlightSec Dashboard" - Aviation security monitoring:
+   - Real-time threat detection
+   - Incident response automation
+   - Compliance reporting
+   - Integration with aviation-specific security standards
+
+3. "CloudGuard" - Multi-cloud security assessment tool:
+   - Automated security scanning
+   - Configuration compliance checking
+   - Continuous monitoring
+   - Vulnerability assessment reporting
+
+4. "CryptoVault" - Secure data storage service:
+   - Client-side encryption
+   - Key management service
+   - Secure sharing mechanisms
+   - Zero-knowledge architecture
+            </div>
+
+            <h2>📈 Measuring Success and Progress</h2>
+
+            <p>To ensure I'm making real progress, I'll track:</p>
+
+            <h3>Technical Metrics</h3>
+            <ul>
+                <li><strong>Project Complexity:</strong> From simple auth to enterprise-grade security systems</li>
+                <li><strong>Security Standards:</strong> Implementing industry best practices and frameworks</li>
+                <li><strong>Code Quality:</strong> Security-focused code reviews and automated testing</li>
+                <li><strong>Threat Modeling:</strong> Systematic identification and mitigation of security risks</li>
+            </ul>
+
+            <h3>Professional Metrics</h3>
+            <ul>
+                <li><strong>Certification Progress:</strong> Passing industry-recognized security certifications</li>
+                <li><strong>Community Engagement:</strong> Speaking at meetups, contributing to discussions</li>
+                <li><strong>Portfolio Development:</strong> Building a comprehensive security project portfolio</li>
+                <li><strong>Network Growth:</strong> Connecting with security professionals and mentors</li>
+            </ul>
+
+            <h2>🌟 The Bigger Picture: Career Transformation</h2>
+
+            <p>These technical goals support my larger career transformation from flight attendant to cybersecurity professional. My aviation background provides unique advantages:</p>
+
+            <ul>
+                <li><strong>Safety Culture:</strong> Aviation's safety-first mindset translates perfectly to security</li>
+                <li><strong>Attention to Detail:</strong> Critical for identifying security vulnerabilities</li>
+                <li><strong>Crisis Management:</strong> Essential for incident response and security operations</li>
+                <li><strong>Regulatory Compliance:</strong> Understanding of strict regulatory environments</li>
+                <li><strong>Global Perspective:</strong> International experience valuable for global security challenges</li>
+            </ul>
+
+            <h3>Target Roles (18-24 months)</h3>
+            <ul>
+                <li><strong>Security Engineer:</strong> Building and maintaining security systems</li>
+                <li><strong>Application Security Specialist:</strong> Securing development lifecycle</li>
+                <li><strong>Cloud Security Architect:</strong> Designing secure cloud infrastructure</li>
+                <li><strong>Security Consultant:</strong> Helping organizations improve their security posture</li>
+            </ul>
+
+            <h2>💡 Lessons from My Aviation Career</h2>
+
+            <p>My transition from aviation to cybersecurity has taught me that career changes require:</p>
+
+            <ul>
+                <li><strong>Systematic Learning:</strong> Just like flight training, cybersecurity requires structured, progressive learning</li>
+                <li><strong>Practical Application:</strong> Theory means nothing without hands-on experience</li>
+                <li><strong>Continuous Improvement:</strong> Security threats evolve constantly, requiring lifelong learning</li>
+                <li><strong>Attention to Standards:</strong> Both aviation and security rely heavily on following established protocols</li>
+                <li><strong>Team Collaboration:</strong> Security is a team effort, just like flight operations</li>
+            </ul>
+
+            <h2>🚀 Ready for Takeoff</h2>
+
+            <p>This learning roadmap represents more than just technical skill development—it's my flight plan for a complete career transformation. Each goal builds upon the previous one, creating a comprehensive security skillset that combines technical expertise with practical experience.</p>
+
+            <p>The next 18 months will be challenging, but I'm excited to push beyond the basics and start building the advanced security systems that protect organizations and their users. My aviation background has taught me that with proper planning, systematic training, and dedication to safety (security), even the most complex challenges become manageable.</p>
+
+            <p><em>Follow my progress as I work toward these goals. I'll be documenting each milestone, sharing code examples, and discussing the challenges and breakthroughs along the way. The sky's not the limit—it's just the beginning.</em></p>
+        </article>
+
+        <div class="back-to-portfolio">
+            <a href="/" class="back-link">← Back to Portfolio</a>
+        </div>
+    </div>
+</body>
+</html>

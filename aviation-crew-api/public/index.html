@@ -738,37 +738,12 @@
         // Handle login form submission
         async function handleLogin(event) {
             event.preventDefault();
-            
+            // Static demo: show fake success message and skip backend
             const employeeId = document.getElementById('employee-id').value;
-            const password = document.getElementById('password').value;
-            
-            try {
-                const response = await fetch(`${API_BASE}/api/auth/login`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ employeeId, password })
-                });
-
-                const data = await response.json();
-                
-                if (response.ok) {
-                    // Store user data
-                    currentUser = data.user;
-                    authToken = data.token;
-                    
-                    // Update UI
-                    showLoggedInState();
-                    updateConnectionStatus('Connected', true);
-                    
-                } else {
-                    throw new Error(data.message || 'Login failed');
-                }
-                
-            } catch (error) {
-                updateConnectionStatus(`Login Error: ${error.message}`, false);
-            }
+            currentUser = { name: employeeId, employeeId: employeeId, role: 'demo' };
+            authToken = 'demo-token';
+            showLoggedInState();
+            updateConnectionStatus('Demo: Login successful! (No real authentication performed)', true);
         }
 
         // Show logged in state

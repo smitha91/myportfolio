@@ -4,7 +4,7 @@ A modern, responsive portfolio website showcasing full-stack development skills,
 
 ## 🌟 Live Demo
 
-Visit the portfolio at: [https://smitha91.github.io/my-portfolio/](https://smitha91.github.io/my-portfolio/)
+Visit the portfolio at:  https://smitha91.github.io/myportfolio/
 
 ## 📋 Table of Contents
 

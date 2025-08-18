@@ -740,7 +740,13 @@
             event.preventDefault();
             // Static demo: show fake success message and skip backend
             const employeeId = document.getElementById('employee-id').value;
-            currentUser = { name: employeeId, employeeId: employeeId, role: 'demo' };
+            let demoProfile = {
+                'AA12345': { name: 'Captain Sarah Johnson', role: 'pilot' },
+                'FA67890': { name: 'Emily Chen', role: 'flight_attendant' },
+                'GA11111': { name: 'Mike Rodriguez', role: 'gate_agent' }
+            };
+            let profile = demoProfile[employeeId] || { name: employeeId, role: 'demo' };
+            currentUser = { name: profile.name, employeeId: employeeId, role: profile.role };
             authToken = 'demo-token';
             showLoggedInState();
             updateConnectionStatus('Demo: Login successful! (No real authentication performed)', true);
@@ -891,7 +897,19 @@
         }
 
         async function getProfile() {
-            await testEndpoint('/api/auth/me', 'GET', 'profile-result');
+            // Static demo: show fake profile based on currentUser
+            const profileResult = document.getElementById('profile-result');
+            if (!currentUser) {
+                profileResult.innerHTML = '<span style="color:#f87171;">Not logged in.</span>';
+                return;
+            }
+            profileResult.innerHTML = `
+                <div style='color:#22c55e;'>
+                    <strong>Name:</strong> ${currentUser.name}<br>
+                    <strong>Employee ID:</strong> ${currentUser.employeeId}<br>
+                    <strong>Role:</strong> ${getRoleDescription(currentUser.role)}
+                </div>
+            `;
         }
 
         function showSendMessage() {

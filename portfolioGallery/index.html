@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    .luxury-back-btn {
+      display: inline-block;
+      margin: 2rem 0 0 2rem;
+      padding: 0.6rem 1.6rem;
+      font-size: 1.1rem;
+      font-family: 'Playfair Display', 'Georgia', serif;
+      color: #232323;
+      background: linear-gradient(90deg, #e7c873 80%, #fff2cc 100%);
+      border: none;
+      border-radius: 18px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 2px 12px #0002;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .luxury-back-btn:hover {
+      background: linear-gradient(90deg, #fff2cc 80%, #e7c873 100%);
+      color: #bfa13a;
+      box-shadow: 0 4px 24px #e7c87355;
+    }
+    body {
+      background: linear-gradient(135deg, #181818 0%, #232323 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Playfair Display', 'Georgia', serif;
+      overflow-x: hidden;
+    }
+    .luxury-title {
+      text-align: center;
+      color: #e7c873;
+      margin-top: 2.5rem;
+      font-size: 3rem;
+      letter-spacing: 3px;
+      font-family: 'Playfair Display', 'Georgia', serif;
+      font-weight: 700;
+      text-shadow: 0 2px 16px #000, 0 1px 0 #fff2cc;
+    }
+    .luxury-carousel-container {
+      width: 100vw;
+      max-width: 1400px;
+      margin: 3rem auto 2rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(30, 30, 30, 0.7);
+      border-radius: 32px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.25);
+      padding: 2.5rem 2rem;
+    }
+    .luxury-carousel {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 400px;
+    }
+    .luxury-carousel img {
+      width: 340px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px #e7c873;
+      border: 3px solid #e7c873;
+      background: #232323;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .luxury-carousel img:hover {
+      transform: scale(1.06) translateY(-8px);
+      box-shadow: 0 16px 48px #e7c87399, 0 2px 8px #e7c873;
+      border-color: #fff2cc;
+    }
+    .luxury-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(24, 18, 2, 0.92);
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(2px);
+    }
+    .luxury-modal.active {
+      display: flex;
+    }
+    .luxury-modal img {
+      max-width: 92vw;
+      max-height: 82vh;
+      border-radius: 32px;
+      box-shadow: 0 12px 48px #e7c873cc, 0 2px 8px #e7c873;
+      border: 5px solid #e7c873;
+      background: #232323;
+    }
+    .close-modal {
+      color: #e7c873;
+      font-size: 2.8rem;
+      font-weight: bold;
+      position: absolute;
+      top: 32px;
+      right: 48px;
+      cursor: pointer;
+      text-shadow: 0 2px 16px #000, 0 1px 0 #fff2cc;
+      z-index: 1001;
+      transition: color 0.2s;
+    }
+    .close-modal:hover {
+      color: #fff2cc;
+    }
+    @media (max-width: 900px) {
+      .luxury-carousel img { width: 90vw; height: 160px; }
+      .luxury-carousel-container { padding: 1rem 0.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="luxury-title">Image Gallery</h1>
+    <a href="../index.html" class="luxury-back-btn">&#8592; Back to Portfolio</a>
+  <div class="luxury-carousel-container">
+    <div class="luxury-carousel" id="carousel"></div>
+  </div>
+  <div class="luxury-modal" id="modal">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <img id="modalImg" src="" alt="">
+  </div>
+  <script>
+    // List your images here (or automate with server-side code if needed)
+    const imageFilenames = [
+      'Screenshot 2025-08-19 083758.png',
+      'Screenshot 2025-08-19 083814.png',
+      'Screenshot 2025-08-19 083921.png',
+      'Screenshot 2025-08-19 084512.png',
+      'Screenshot 2025-08-19 084606.png',
+      'Screenshot 2025-08-19 084628.png',
+      'Screenshot 2025-08-19 084657.png',
+      'Screenshot 2025-08-19 084809.png',
+      'Screenshot 2025-08-19 084827.png',
+      'Screenshot 2025-08-19 084852.png',
+      'Screenshot 2025-08-19 085624.png',
+      'Screenshot 2025-08-19 085639.png',
+      'Screenshot 2025-08-19 085707.png',
+      'Screenshot 2025-08-19 085724.png',
+      'Screenshot 2025-08-19 085757.png',
+      'Screenshot 2025-08-19 085845.png',
+      'Screenshot 2025-08-19 085922.png',
+      'Screenshot 2025-08-19 085937.png',
+      'Screenshot 2025-08-19 090002.png',
+      'Screenshot 2025-08-19 090027.png',
+      'Screenshot 2025-08-19 090055.png',
+      'Screenshot 2025-08-19 090128.png',
+  'Screenshot 2025-08-19 090250.png'
+    ];
+    const carousel = document.getElementById('carousel');
+    imageFilenames.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = '';
+      img.onclick = () => openModal(src);
+      carousel.appendChild(img);
+    });
+    // Modal logic
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const closeModal = document.getElementById('closeModal');
+    function openModal(src) {
+      modalImg.src = src;
+      modal.classList.add('active');
+    }
+    closeModal.onclick = () => { modal.classList.remove('active'); modalImg.src = ''; };
+    modal.onclick = (e) => { if (e.target === modal) { modal.classList.remove('active'); modalImg.src = ''; } };
+  </script>
+</body>
+</html>

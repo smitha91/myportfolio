@@ -32,24 +32,23 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default anchor link jump behavior
-            
-            // Extract target section ID from href attribute (remove the '#' symbol)
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            const mainContent = document.querySelector('.main-content');
-            
-            // Perform smooth scroll to target section if it exists
-            if (targetSection && mainContent) {
-                // Calculate the position of the target section relative to the main content container
-                const targetPosition = targetSection.offsetTop - mainContent.offsetTop;
-                
-                // Smooth scroll within the main content container
-                mainContent.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault(); // Only prevent default for anchor links
+                // Extract target section ID from href attribute (remove the '#' symbol)
+                const targetId = href.substring(1);
+                const targetSection = document.getElementById(targetId);
+                const mainContent = document.querySelector('.main-content');
+                // Perform smooth scroll to target section if it exists
+                if (targetSection && mainContent) {
+                    const targetPosition = targetSection.offsetTop - mainContent.offsetTop;
+                    mainContent.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             }
+            // Otherwise, let the browser handle the navigation (e.g., Gallery page)
         });
     });
 
@@ -356,24 +355,26 @@ const nameElement = document.querySelector('.name');
 if (nameElement) {
     nameElement.style.cursor = 'pointer';
     nameElement.style.userSelect = 'none';
-    
+
     // Add subtle hover effect
     nameElement.addEventListener('mouseenter', function() {
         if (!cyberModeActive) {
             this.style.textShadow = '0 0 10px rgba(100, 255, 218, 0.5)';
         }
     });
-    
+
     nameElement.addEventListener('mouseleave', function() {
         if (!cyberModeActive) {
             this.style.textShadow = '';
         }
     });
-    
-    // Double-click to activate cyber mode
+
+    // Double-click to toggle cyber mode
     nameElement.addEventListener('dblclick', function() {
         if (!cyberModeActive) {
             activateCyberMode();
+        } else {
+            deactivateCyberMode();
         }
     });
 }
@@ -394,6 +395,17 @@ function activateCyberMode() {
         console.log('%cWelcome to the Matrix...', 'color: #00ff41; font-size: 14px;');
         console.log('%cCurious mind detected! 🧠', 'color: #00ff41; font-size: 14px;');
     }, 500);
+}
+
+function deactivateCyberMode() {
+    cyberModeActive = false;
+    document.body.classList.remove('cyber-mode');
+    // Optionally remove any cyber-specific styles from the name
+    if (nameElement) {
+        nameElement.style.textShadow = '';
+    }
+    // Optionally show a message or badge for deactivation
+    console.log('%cCYBER MODE DEACTIVATED', 'color: #a78bfa; font-size: 16px;');
 }
 
 function showCyberBadge() {

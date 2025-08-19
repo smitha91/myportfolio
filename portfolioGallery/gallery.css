@@ -1,0 +1,195 @@
+/* 3D Carousel Styles */
+/* Bigger carousel and images */
+
+/* 3D Carousel Styles */
+/* Bigger carousel and images */
+.gallery-carousel-container {
+    position: relative;
+    width: 100vw;
+    max-width: 1500px;
+    height: 850px;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1600px;
+        border: 3px dashed #1a7f3c;
+        background: rgba(255,255,255,0.2);
+        overflow: visible;
+        min-height: 400px;
+    }
+.carousel-3d {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(.23,1.02,.64,1);
+}
+.carousel-img-frame {
+    .nature-header {
+        text-align: center;
+        font-family: 'Orbitron', Arial, sans-serif;
+        color: #256d1b;
+        font-size: 2.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.2rem;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 8px #b7e5b4;
+    }
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 300px;
+    margin: -150px 0 0 -210px;
+    background: #eafbe7;
+    border: 4px solid #6bbf59;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(34,139,34,0.13);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s, box-shadow 0.3s;
+    z-index: 1;
+        display: none;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: filter 0.3s;
+        border: 2px solid red;
+        background: #fffbe7;
+    }
+.carousel-img-frame.active {
+    box-shadow: 0 8px 32px rgba(34,139,34,0.18), 0 2px 8px #b7e5b4;
+    z-index: 2;
+    transform: scale(1.12) !important;
+}
+.carousel-img-frame:hover img {
+    filter: brightness(1.08) saturate(1.1);
+}
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #eafbe7;
+    color: #256d1b;
+    border: 2px solid #6bbf59;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 2px 8px #b7e5b4;
+    transition: background 0.2s;
+}
+.carousel-btn.left { left: 0; }
+.carousel-btn.right { right: 0; }
+.carousel-btn:hover { background: #c6f5c1; }
+
+@media (max-width: 900px) {
+    .gallery-carousel-container { height: 340px; }
+    .carousel-img-frame { width: 120px; height: 90px; margin: -45px 0 0 -60px; }
+}
+/* Modal for expanded image */
+.image-modal {
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0; width: 100vw; height: 100vh;
+    background: rgba(20,40,20,0.85);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.image-modal .modal-img {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(34,139,34,0.28);
+    border: 4px solid #6bbf59;
+    background: #eafbe7;
+}
+.image-modal .close-modal {
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    position: absolute;
+    top: 32px;
+    right: 48px;
+    cursor: pointer;
+    text-shadow: 0 2px 8px #256d1b;
+    z-index: 1001;
+}
+
+/* Remove captions from frames */
+.frame .caption { display: none !important; }
+
+/* Fix frame layout for even spacing */
+.back-wall, .left-wall, .right-wall {
+    gap: 3vw !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+/* 3D Room Floor and Ceiling */
+.ceiling {
+    background: linear-gradient(180deg, #e0f7e9 60%, #b7e5b4 100%);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateX(90deg) translateY(-50%) translateZ(300px);
+    box-shadow: 0 8px 32px rgba(34,139,34,0.08);
+    opacity: 0.95;
+    z-index: 1;
+}
+.floor {
+    background: linear-gradient(0deg, #b7e5b4 60%, #e0f7e9 100%);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: rotateX(90deg) translateY(50%) translateZ(-300px);
+    box-shadow: 0 -8px 32px rgba(34,139,34,0.10);
+    opacity: 0.97;
+    z-index: 1;
+}
+
+
+/* Enhance frame hover for gentle effect */
+.frame:hover {
+    transform: scale(1.06) rotateZ(-1deg) translateY(-6px) !important;
+    box-shadow: 0 8px 32px rgba(34,139,34,0.18), 0 2px 8px #b7e5b4;
+    z-index: 2;
+}
+
+/* Subtle light overlay for natural feel */
+.gallery-3d-room::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.18) 0%, rgba(183,229,180,0.08) 60%, transparent 100%);
+    z-index: 2;
+}
+/* Extra styles for the 3D gallery if needed */
+.carousel-slide img {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    border-radius: 16px;
+    border: 2px solid #2563eb;
+}
+
+.carousel-btn {
+    outline: none;
+}
+
+@media (max-width: 700px) {
+    .carousel-3d {
+        height: 220px;
+    }
+    .carousel-slide {
+        width: 180px;
+        height: 120px;
+    }
+}

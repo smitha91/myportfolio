@@ -46,6 +46,7 @@
                     <!-- Each nav item targets a section via anchor links (#about, #experience, etc.) -->
                     <!-- The 'active' class indicates the current section (managed by JavaScript) -->
                     <li><a href="#about" class="nav-link active">About</a></li>
+                    <li><a href="portfolioGallery/index.html" class="nav-link">Gallery</a></li>
                     <li><a href="#experience" class="nav-link">Experience</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
                     <li><a href="#writing" class="nav-link">Writing</a></li>
@@ -90,10 +91,10 @@
             <!-- First section that appears when page loads -->
             <section id="about" class="section">
                 <div class="content">
-                    <!-- ===== PROFESSIONAL INTRODUCTION ===== -->
+                    <!-- ===== PHOTO AND PROFESSIONAL INTRODUCTION ===== -->
+                    <img src="portfolioGallery/ME.png" alt="Ashley Smith" class="about-photo" />
                     <!-- Multi-paragraph description showcasing personality and technical approach -->
                     <p>I'm a developer passionate about crafting accessible user interfaces that blend thoughtful design with secure engineering. My favorite work lies at the intersection of design and development, creating experiences that not only look great but are built for performance and usability.</p>
-                    
                     <!-- ===== CURRENT ROLE AND FOCUS ===== -->
                     <p>Currently, I'm a junior developer studying modern web technologies and best practices. I contribute to the creation and maintenance of scalable applications and UI components, ensuring our platforms meet web accessibility standards and deliver inclusive user experiences.</p>
                     
@@ -381,9 +382,14 @@
                             </div>
                         </div>
                         <!-- Article thumbnail image -->
-                        <div class="writing-image">
-                            <img src="https://via.placeholder.com/100x100/DC2626/ffffff?text=⚡" alt="Interactive Security Features" />
-                        </div>
+                                                                        <div class="writing-image cyber-icon-bg">
+                                                                            <!-- Shield/lock SVG for Interactive Security Features -->
+                                                                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cybersecurity Shield">
+                                                                                <rect x="4" y="4" width="64" height="64" rx="16" fill="#101C2C" fill-opacity="0.92" stroke="#00FFC6" stroke-width="2.5"/>
+                                                                                <path d="M36 20c-7 0-14 3.5-14 10.5 0 8.5 7.5 15.5 14 19.5 6.5-4 14-11 14-19.5C50 23.5 43 20 36 20zm0 16.5a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#00FFC6"/>
+                                                                                <circle cx="36" cy="33.5" r="3.5" fill="#101C2C" stroke="#00FFC6" stroke-width="1.5"/>
+                                                                            </svg>
+                                                                        </div>
                     </div>
 
                     <!-- Future Learning Goals Article -->
@@ -404,9 +410,15 @@
                                 <span class="writing-tag">Career Development</span>
                             </div>
                         </div>
-                        <div class="writing-image">
-                            <img src="https://via.placeholder.com/100x100/3B82F6/ffffff?text=🎯" alt="Future Learning Goals" />
-                        </div>
+                                                <div class="writing-image cyber-icon-bg">
+                                                    <!-- Lock SVG for Advanced Cybersecurity Goals -->
+                                                    <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cybersecurity Lock">
+                                                        <rect x="4" y="4" width="64" height="64" rx="16" fill="#101C2C" fill-opacity="0.92" stroke="#00FFC6" stroke-width="2.5"/>
+                                                        <rect x="24" y="36" width="24" height="16" rx="5" fill="#00FFC6"/>
+                                                        <rect x="30" y="28" width="12" height="12" rx="6" fill="#101C2C" stroke="#00FFC6" stroke-width="1.5"/>
+                                                        <rect x="12" y="12" width="48" height="48" rx="12" stroke="#00FFC6" stroke-width="1.2" stroke-dasharray="4 4" fill="none"/>
+                                                    </svg>
+                                                </div>
                     </div>
 
                     <!-- Security Design Thinking Article -->
@@ -427,9 +439,16 @@
                                 <span class="writing-tag">Best Practices</span>
                             </div>
                         </div>
-                        <div class="writing-image">
-                            <img src="https://via.placeholder.com/100x100/059669/ffffff?text=🧠" alt="Security Mindset" />
-                        </div>
+                                                <div class="writing-image cyber-icon-bg">
+                                                    <!-- Brain/circuit SVG for Security Mindset -->
+                                                    <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Security Mindset">
+                                                        <rect x="4" y="4" width="64" height="64" rx="16" fill="#101C2C" fill-opacity="0.92" stroke="#00FFC6" stroke-width="2.5"/>
+                                                        <ellipse cx="36" cy="36" rx="16" ry="12" fill="#00FFC6"/>
+                                                        <path d="M28 36c0-4 4-8 8-8s8 4 8 8-4 8-8 8-8-4-8-8z" fill="#101C2C"/>
+                                                        <circle cx="36" cy="36" r="3" fill="#00FFC6"/>
+                                                        <rect x="12" y="12" width="48" height="48" rx="12" stroke="#00FFC6" stroke-width="1.2" stroke-dasharray="4 4" fill="none"/>
+                                                    </svg>
+                                                </div>
                     </div>
 
                     <!-- Aviation to Tech Transition Article -->
@@ -449,9 +468,14 @@
                                 <span class="writing-tag">Safety Protocols</span>
                             </div>
                         </div>
-                        <div class="writing-image">
-                            <img src="https://via.placeholder.com/100x100/F59E0B/ffffff?text=✈️" alt="Aviation to Tech" />
-                        </div>
+                                                <div class="writing-image cyber-icon-bg">
+                                                    <!-- Airplane/circuit SVG for Aviation to Tech -->
+                                                    <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Aviation to Tech">
+                                                        <rect x="4" y="4" width="64" height="64" rx="16" fill="#101C2C" fill-opacity="0.92" stroke="#00FFC6" stroke-width="2.5"/>
+                                                        <path d="M36 20l4 16h8l-8 8 4 16-8-12-8 12 4-16-8-8h8l4-16z" fill="#00FFC6"/>
+                                                        <rect x="12" y="12" width="48" height="48" rx="12" stroke="#00FFC6" stroke-width="1.2" stroke-dasharray="4 4" fill="none"/>
+                                                    </svg>
+                                                </div>
                     </div>
                     
                     <!-- Back to top navigation -->
@@ -634,7 +658,23 @@
         .footer a {
             cursor: pointer;
         }
-    </style>
+                </style>
+                <style>
+                .cyber-icon-bg {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100px;
+                    height: 100px;
+                    background: rgba(16,28,44,0.85);
+                    border-radius: 18px;
+                    box-shadow: 0 0 0 3px #00FFC6, 0 8px 32px #00ffc655, 0 1.5px 8px #00FFC6;
+                    transition: box-shadow 0.2s;
+                }
+                .cyber-icon-bg:hover {
+                    box-shadow: 0 0 0 5px #00FFC6, 0 12px 48px #00ffc688, 0 2px 12px #00FFC6;
+                }
+                </style>
     
     <!-- ===== BACK TO TOP AIRPLANE ===== -->
     <div id="backToTop" style="position: fixed; bottom: 30px; right: 30px; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease;">

@@ -1,3 +1,17 @@
+/* ===== ABOUT PHOTO WRAP ===== */
+.about-photo {
+    float: left;
+    width: 170px;
+    height: 200px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 24px;
+    margin: 0 2rem 1rem 0;
+    box-shadow: 0 4px 24px rgba(99,179,237,0.18), 0 1.5px 8px rgba(10,22,40,0.12);
+    border: 2.5px solid #63B3ED;
+    background: #0A1628;
+    transition: all 0.3s cubic-bezier(.4,0,.2,1);
+}
 /* ===== CSS RESET AND FOUNDATION ===== */
 /* 
  * Universal reset removes browser default styling inconsistencies

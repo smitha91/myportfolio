@@ -738,14 +738,32 @@
         // Handle login form submission
         async function handleLogin(event) {
             event.preventDefault();
-            // Static demo: show fake success message and skip backend
             const employeeId = document.getElementById('employee-id').value;
+            const password = document.getElementById('password').value;
             let demoProfile = {
                 'AA12345': { name: 'Captain Sarah Johnson', role: 'pilot' },
                 'FA67890': { name: 'Emily Chen', role: 'flight_attendant' },
                 'GA11111': { name: 'Mike Rodriguez', role: 'gate_agent' }
             };
             let profile = demoProfile[employeeId] || { name: employeeId, role: 'demo' };
+            // Try backend login if on localhost
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                try {
+                    const response = await fetch(API_BASE + '/api/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ employeeId, password })
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        currentUser = data.user;
+                        authToken = data.token;
+                        showLoggedInState();
+                        updateConnectionStatus('Login successful! Connected to backend.', true);
+                        return;
+                    }
+                } catch (e) { /* fallback to demo */ }
+            }
             currentUser = { name: profile.name, employeeId: employeeId, role: profile.role };
             authToken = 'demo-token';
             showLoggedInState();
@@ -893,6 +911,28 @@
             if (!currentUser) {
                 messagesResult.innerHTML = '<span style="color:#f87171;">Not logged in.</span>';
                 return;
+            }
+            // Try backend first, fallback to demo data if fetch fails
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                try {
+                    const options = {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    };
+                    if (authToken) {
+                        options.headers['Authorization'] = `Bearer ${authToken}`;
+                    }
+                    const response = await fetch(API_BASE + '/api/messages', options);
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        messagesResult.innerHTML = responseData.map(m => `<div style='margin-bottom:8px;'><strong>${m.from}:</strong> ${m.content}</div>`).join('');
+                        messagesResult.className = 'result success';
+                        return;
+                    }
+                } catch (err) { /* fallback to demo */ }
             }
             // Demo messages by role
             let demoMessages = {

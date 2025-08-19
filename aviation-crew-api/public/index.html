@@ -889,11 +889,70 @@
 
         // Specific API functions
         async function getMessages() {
-            await testEndpoint('/api/messages', 'GET', 'messages-result');
+            const messagesResult = document.getElementById('messages-result');
+            if (!currentUser) {
+                messagesResult.innerHTML = '<span style="color:#f87171;">Not logged in.</span>';
+                return;
+            }
+            // Demo messages by role
+            let demoMessages = {
+                pilot: [
+                    { from: 'Dispatch', content: 'Pre-flight check complete. Ready for boarding.' },
+                    { from: 'Ops', content: 'Weather is clear for your route.' }
+                ],
+                flight_attendant: [
+                    { from: 'Lead FA', content: 'Safety briefing at 07:30 in crew lounge.' },
+                    { from: 'Ops', content: 'Passenger manifest updated.' }
+                ],
+                gate_agent: [
+                    { from: 'Supervisor', content: 'Gate change to B12 for Flight 123.' },
+                    { from: 'Ops', content: 'Crew check-in confirmed.' }
+                ],
+                demo: [
+                    { from: 'System', content: 'Welcome to the Aviation Crew Demo!' }
+                ]
+            };
+            let msgs = demoMessages[currentUser.role] || demoMessages.demo;
+            messagesResult.innerHTML = msgs.map(m => `<div style='margin-bottom:8px;'><strong>${m.from}:</strong> ${m.content}</div>`).join('');
+        }
+
+        function showSendMessage() {
+            const resultDiv = document.getElementById('messages-result');
+            resultDiv.innerHTML = `
+                <div style="background: #2a2a2a; padding: 15px; border-radius: 6px; margin: 10px 0;">
+                    <h4 style="color: #00bcd4; margin-top: 0;">Send New Message</h4>
+                    <textarea id="message-text" placeholder="Enter your message..." style="width: 100%; height: 80px; background: #1a1a1a; color: white; border: 1px solid #555; border-radius: 4px; padding: 10px; resize: vertical;"></textarea>
+                    <br><br>
+                    <button onclick="sendMessage()" style="background: #28a745;">Send Message</button>
+                    <button onclick="getMessages()" style="background: #6c757d;">Cancel</button>
+                </div>
+            `;
+        }
+
+        function sendMessage() {
+            const messageText = document.getElementById('message-text').value;
+            if (!messageText.trim()) {
+                alert('Please enter a message');
+                return;
+            }
+            // Demo: just show confirmation
+            const messagesResult = document.getElementById('messages-result');
+            messagesResult.innerHTML = `<span style='color:#22c55e;'>Message sent! (Demo only)</span>`;
         }
 
         async function getCrew() {
-            await testEndpoint('/api/crew', 'GET', 'crew-result');
+            const crewResult = document.getElementById('crew-result');
+            if (!currentUser) {
+                crewResult.innerHTML = '<span style="color:#f87171;">Not logged in.</span>';
+                return;
+            }
+            // Demo crew list
+            let demoCrew = [
+                { name: 'Captain Sarah Johnson', role: 'Pilot', id: 'AA12345' },
+                { name: 'Emily Chen', role: 'Flight Attendant', id: 'FA67890' },
+                { name: 'Mike Rodriguez', role: 'Gate Agent', id: 'GA11111' }
+            ];
+            crewResult.innerHTML = demoCrew.map(c => `<div><strong>${c.name}</strong> (${c.role}) - ID: ${c.id}</div>`).join('');
         }
 
         async function getProfile() {
@@ -910,35 +969,6 @@
                     <strong>Role:</strong> ${getRoleDescription(currentUser.role)}
                 </div>
             `;
-        }
-
-        function showSendMessage() {
-            const resultDiv = document.getElementById('messages-result');
-            resultDiv.innerHTML = `
-                <div style="background: #2a2a2a; padding: 15px; border-radius: 6px; margin: 10px 0;">
-                    <h4 style="color: #00bcd4; margin-top: 0;">Send New Message</h4>
-                    <textarea id="message-text" placeholder="Enter your message..." style="width: 100%; height: 80px; background: #1a1a1a; color: white; border: 1px solid #555; border-radius: 4px; padding: 10px; resize: vertical;"></textarea>
-                    <br><br>
-                    <button onclick="sendMessage()" style="background: #28a745;">Send Message</button>
-                    <button onclick="getMessages()" style="background: #6c757d;">Cancel</button>
-                </div>
-            `;
-        }
-
-        async function sendMessage() {
-            const messageText = document.getElementById('message-text').value;
-            if (!messageText.trim()) {
-                alert('Please enter a message');
-                return;
-            }
-            
-            const messageData = {
-                content: messageText,
-                recipient: 'crew',
-                priority: 'normal'
-            };
-            
-            await testEndpoint('/api/messages', 'POST', 'messages-result', messageData);
         }
 
         // Initialize page
